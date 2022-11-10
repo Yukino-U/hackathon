@@ -11,7 +11,7 @@ type Props = {
   user: Member;
 };
 
-export const UserCard=(props: Props) => {
+export const MemberCard=(props: Props) => {
   const { user } = props; // ユーザー情報受け取り
 
   return (
@@ -19,13 +19,12 @@ export const UserCard=(props: Props) => {
 
     <UnstyledButton>
       <Group>
-        <Avatar size={40} src={user.photo}></Avatar>
+        <Avatar size={50} src={user.photo}></Avatar>
         <div>
-          <Text>{user.name}</Text>
+          <Text size="xl">{user.name}</Text>
         </div>
       </Group>
     </UnstyledButton>
     </>
   );
 };
-

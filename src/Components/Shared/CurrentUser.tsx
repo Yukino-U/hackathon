@@ -2,7 +2,7 @@ import  { useState, useEffect, useContext } from "react";
 import {UserContext} from "./Context";
 //import internal from "stream";
 //import "../Form";
-import {ToCont} from "../MyPage/ToUser"
+import {ToCont} from "../MyPage/ToUserold"
 import {FromCont} from "../MyPage/FromUser"
 type Member={
     name : string;

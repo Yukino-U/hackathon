@@ -7,6 +7,7 @@ type Member={
   name : string;
   id : string;
   photo : string;
+  point : number;
 };
 
 

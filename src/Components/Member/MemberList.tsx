@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import internal from "stream";
+import { Drawer, Button, Group, Box } from '@mantine/core';
+import {MemberCard} from "./MemberCard"
 import "../../Form";
 type Member={
     name : string;
-    id : number;
+    id : string;
     photo : string;
     point : number;
   }
+
+  
   
 
 export const MemberList = () => {
@@ -31,14 +34,27 @@ export const MemberList = () => {
       )
 
     return (
-        <form style={{ display: "flex", flexDirection: "column" }}>
-      <ul>
-                {
-                    data.map((d: Member) => 
-                    <li key={d.id}>{<img src={d.photo}></img>}{d.name}{d.point}</li>
-                    )
-                }
-            </ul>
-    </form>
+      <div>
+
+      {data.map((user :Member) => (
+        <Box key={user.id}
+        sx={(theme) => ({
+          //backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+          textAlign: 'left',
+          padding: theme.spacing.xl,
+          borderRadius: theme.radius.xl,
+          cursor: 'pointer',
+  
+          // '&:hover': {
+          //   backgroundColor:
+          //     theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+          // },
+        })}
+      >
+        <MemberCard  user={user}  />
+      </Box>
+      ))}
+      </div>
+
     );
   };

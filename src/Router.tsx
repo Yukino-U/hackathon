@@ -3,7 +3,7 @@ import { Home } from "./Pages/Home";
 import { Member } from "./Pages/Member";
 import  UserList  from "./Components/UserList";
 import { CurrentUser } from "./Components/Shared/CurrentUser";
-import PostCont from "./Components/PostCont"
+import { Post } from "./Pages/Post";
 import { MyPage } from "./Pages/MyPage";
 
 export const Router = () => {
@@ -23,7 +23,7 @@ export const Router = () => {
         <MyPage/>
       </Route>
       <Route path="/postcont">
-        <PostCont/>
+        <Post/>
       </Route>
 
     
