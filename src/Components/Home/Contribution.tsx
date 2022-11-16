@@ -1,9 +1,9 @@
 import {useState, useEffect} from "react";
-import { Group, Avatar, Text, Accordion, ActionIcon, Box  } from '@mantine/core';
+import { Group, Avatar, Text, Accordion, ActionIcon, Box ,Center, Flex, Divider } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { IconDots } from '@tabler/icons';
-
+import "./Contribution.css"
 type Contribution= {
     id : string
     from_name : string;
@@ -51,6 +51,7 @@ interface AccordionLabelProps {
 
 const AccordionLabel = (item: AccordionLabelProps) =>{
   return (
+    <>
     <Group noWrap>
     <div>
         <Avatar src={item.from_photo} radius="xl" size="lg" />
@@ -62,8 +63,6 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         </IconContext.Provider>
         <Text >{item.point} Pt</Text>
     </div>
-   
-    
     <div>
         <Avatar src={item.to_photo} radius="xl" size="lg" /> 
         <Text>{item.to_name}</Text>
@@ -77,21 +76,37 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         
       </div>
     </Group>
+    </>
   );
 }
 
 
     const items = cont.map((item : Contribution) => (
-        <Accordion.Item value={item.id} key={item.id}>
+      //   <Accordion.Item value={item.id} key={item.id}>
                           
-        <Accordion.Control>
-          <AccordionLabel  {...item} />
+      //   <Accordion.Control>
+      //     <AccordionLabel  {...item} />
 
 
-        </Accordion.Control>
+      //   </Accordion.Control>
        
-      </Accordion.Item>
+      // </Accordion.Item>
+      <>
+      <Flex align="center">
+      <Box key={item.id} color="white">
+            
+        <AccordionLabel {...item} />
+
+    </Box>
+    </Flex>
+    <Divider my="sm" />
+    </>
     ));
   
-    return <Accordion  chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
+    return <div>
+      <Text>All Contribution</Text>
+      {/* <Accordion  chevronPosition="right" variant="contained" chevron="" mx="auto" >{items}</Accordion> */}
+      <Divider my="sm" />
+      {items}
+    </div>;
   }

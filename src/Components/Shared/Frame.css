@@ -1,5 +1,19 @@
-Header{
-    display: flex;
-    justify-content: space-between;
-    background-color: pink;
+/* .props{
+    background-color: aliceblue;
+} */
+
+AppShel{
+    background-color: blue;
 }
+
+/* div{
+    background-color: pink;
+} */
+
+html {
+    background-color:white;
+    }
+
+/* UserContext.Provider{
+    background-color: black;
+} */

@@ -3,8 +3,9 @@ import { UserContext } from "../Shared/Context";
 // import Paper from "@mui/material/Paper";
 // import MenuList from "@mui/material/MenuList";
 // import {Box} from "@mui/material";
-import { Select, Group, Avatar, Text, SelectItem } from '@mantine/core';
+import { Select, Group, Avatar, Text, SelectItem, Flex} from '@mantine/core';
 // import { UserList } from "./UserList";
+import "./PostCont.css";
 
 type Member={
   name : string;
@@ -161,32 +162,10 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
 
 
   return (
+    <div>
     <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
-    <label>To: </label>
-    {/* <Paper
-      sx={{
-        width: `80%`,
-        overflow: "auto",
-        m: 1,
-        borderRadius: 5,
-        boxShadow: 10,
-      }}
-    // > */}
-    {/* //   <Box sx={{ width: "100%", typography: "body1" }}>
-        
-    //       <Box sx={{ borderBottom: 1, borderColor: "divider" }}> */}
-
-          {/* </Box> */}
-            {/* <MenuList>
-              {data.map((user :Member) => (
-                <div onClick={()=>setToId(user.id)} key={user.id}>
-                <UserCard  user={user}  />
-                
-                </div> 
-              ))}
-            </MenuList> */}
     <Select
-      label="誰に送りますか？"
+      label="To:"
       placeholder="Pick all that you like"
       itemComponent={SelectItem}
       data={addData}
@@ -204,24 +183,25 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     />
 
         
-      {/* </Box>
-    </Paper> */}
        <label>Point: </label>
       <input
         type={"number"}
         value={point}
         onChange={(e) => setPoint(e.target.valueAsNumber)}
       ></input>
+
       <label>Message: </label>
-      <input
-        type={"text"}
+      <textarea
+        // type={"text"}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-      ></input>
+        className="message"
+      ></textarea>
       
     
        <button>Post</button>
     </form>
+    </div>
   );
 };
 

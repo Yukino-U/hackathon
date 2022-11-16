@@ -51,7 +51,7 @@ return (
         {data.map((user :Member) => (
               <Box onClick={()=>onSubmit(user.id, user.photo, user.name, user.point)} key={user.id}
               sx={(theme) => ({
-                //backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+                // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                 textAlign: 'left',
                 padding: theme.spacing.xs,
                 borderRadius: theme.radius.xs,
@@ -68,12 +68,11 @@ return (
             ))}
         
       </Drawer>
-
+{/* <Button  onClick={() => setOpened(true)} color='#EB94E2' */}
       <Group position="right">
-      <Button onClick={() => setOpened(true)} color="white">
-        ユーザー変更
-      </Button>
+      <Button variant="gradient" gradient={{ from: '#8ED1F4', to: '#EB94E2', deg: 35 }} onClick={() => setOpened(true)} >ユーザー変更</Button>
       </Group>
+
     
 
   

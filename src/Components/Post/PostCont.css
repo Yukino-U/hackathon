@@ -1,0 +1,19 @@
+form {
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 960px) {
+    form {
+      max-width: 960px;
+      margin: 0 auto;
+  
+      
+    }
+  }
+
+.message{
+    height: 100px;
+}
+
+
+    
