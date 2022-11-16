@@ -1,7 +1,8 @@
-import { Group, Avatar, Text, Accordion } from '@mantine/core';
 import {useState, useEffect} from "react";
+import { Group, Avatar, Text, Accordion, ActionIcon, Box  } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
+import { IconDots } from '@tabler/icons';
 
 type Contribution= {
     id : string
@@ -68,7 +69,8 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         <Text>{item.to_name}</Text>
     </div>
       <div>
-        <Text size="sm" color="dimmed" weight={400}>{item.post_time}</Text>
+        <Text size="sm" color="dimmed" weight={400}>{item.post_time}{item.post_time!=item.update_time && (<> (編集済み)</>)}</Text>
+        
         <Text>
           {item.message}
         </Text>
@@ -80,15 +82,16 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
 
 
     const items = cont.map((item : Contribution) => (
-      <Accordion.Item value={item.id} key={item.id}>
+        <Accordion.Item value={item.id} key={item.id}>
+                          
         <Accordion.Control>
-          <AccordionLabel {...item} />
+          <AccordionLabel  {...item} />
+
+
         </Accordion.Control>
-        <Accordion.Panel>
-          <Text size="sm">{item.message}</Text>
-        </Accordion.Panel>
+       
       </Accordion.Item>
     ));
   
-    return <Accordion chevronPosition="right" variant="contained">{items}</Accordion>;
+    return <Accordion  chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
   }

@@ -4,23 +4,30 @@ import {UserContext} from "../Shared/Context";
 import { Group, Avatar, Text, Accordion } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
+import { IconPencil } from '@tabler/icons';
+//import {EditForm} from "./EditForm";
+import {EditModal} from "./EditModal";
 
 type Contribution= {
     id : string
     from_name : string;
     from_photo : string;
+    to_id : string;
     to_name : string;
     to_photo : string;
     point : number;
     message : string;
     post_time : string;
     update_time : string;
-  
+    // reload : () =>Promise<void>
   }
+
+  
   
 
 export const FromCont = () => {
-    const [cont, setCont] = useState([])
+
+    const [cont, setCont] = useState<Contribution[]>([])
     const url = "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
     const getconst = async () => {
               const response = await fetch(url,
@@ -73,7 +80,7 @@ export const FromCont = () => {
         <Text>{item.to_name}</Text>
     </div>
       <div>
-        <Text size="sm" color="dimmed" weight={400}>{item.post_time}</Text>
+        <Text size="sm" color="dimmed" weight={400}>{item.post_time}{item.post_time!=item.update_time && (<> (編集済み)</>)}</Text>
         <Text>
           {item.message}
         </Text>
@@ -85,16 +92,26 @@ export const FromCont = () => {
                     )
                     }
                     const items = cont.map((item : Contribution) => (
+                     
                       <Accordion.Item value={item.id} key={item.id}>
-                        <Accordion.Control>
-                          <AccordionLabel {...item} />
+                        <Accordion.Control >
+                          <AccordionLabel {...item}/>
                         </Accordion.Control>
                         <Accordion.Panel>
-                          <Text size="sm">{item.message}</Text>
+                          <EditModal {...item} reload={getconst} ></EditModal>
+                          {/* {EditModal(item)} */}
+                        
                         </Accordion.Panel>
                       </Accordion.Item>
                     ));
                   
-                    return <Accordion chevronPosition="right" variant="contained">{items}</Accordion>;
-                  }
+                    return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
+                      chevron: {
+                        '&[data-rotate]': {
+                          transform: 'rotate(360deg)',
+                        },} } }
+                        chevronPosition="right" variant="contained"
+                        >
+                          {items}</Accordion>;
+}
   

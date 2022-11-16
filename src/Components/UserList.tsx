@@ -11,6 +11,7 @@ type Member={
     name : string;
     id : string;
     photo : string;
+    point : number;
   };
 
 const UserList: FC = memo(() => {
@@ -35,8 +36,8 @@ const UserList: FC = memo(() => {
 
 
     const {setUser} =useContext(UserContext);
-    const onSubmit = ( id:string, photo: string, name: string)  => {
-      setUser(id, photo, name);
+    const onSubmit = ( id:string, photo: string, name: string, point : number)  => {
+      setUser(id, photo, name, point);
       console.log(id)
      }
   return (
@@ -56,7 +57,7 @@ const UserList: FC = memo(() => {
           </Box>
             <MenuList>
               {data.map((user :Member) => (
-                <div onClick={()=>onSubmit(user.id, user.photo, user.name)} key={user.id}>
+                <div onClick={()=>onSubmit(user.id, user.photo, user.name, user.point)} key={user.id}>
                 <UserCard  user={user}  />
                 
                 </div> 

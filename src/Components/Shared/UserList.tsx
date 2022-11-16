@@ -34,8 +34,8 @@ export const UserList=() => {
 
 
   const {setUser} =useContext(UserContext);
-  const onSubmit = ( id:string, photo: string, name: string)  => {
-    setUser(id, photo, name);
+  const onSubmit = ( id:string, photo: string, name: string, point : number)  => {
+    setUser(id, photo, name, point);
     console.log(id)
    }
 return (
@@ -49,7 +49,7 @@ return (
         position="right" 
       >
         {data.map((user :Member) => (
-              <Box onClick={()=>onSubmit(user.id, user.photo, user.name)} key={user.id}
+              <Box onClick={()=>onSubmit(user.id, user.photo, user.name, user.point)} key={user.id}
               sx={(theme) => ({
                 //backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                 textAlign: 'left',

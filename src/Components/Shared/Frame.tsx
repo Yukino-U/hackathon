@@ -2,10 +2,14 @@ import { useState , useContext} from 'react';
 import { BrowserRouter, Link } from "react-router-dom";
 import {
   AppShell,
+  Avatar,
+  Center,
+  Flex,
   Navbar,
   Header,
   Footer,
   Aside,
+  Divider,
   Text,
   MediaQuery,
   Burger,
@@ -14,9 +18,10 @@ import {
 import {UserContext} from "./Context";
 import UserList from './UserList';
 import "./Frame.css"
-
+import { useHistory } from 'react-router-dom';
 
 export default function Frame(props :JSX.Element) {
+  const history = useHistory();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
@@ -30,9 +35,20 @@ export default function Frame(props :JSX.Element) {
       asideOffsetBreakpoint="sm"
       navbar={
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-        <Navbar.Section>
-            <img src={useContext(UserContext).photo}></img>{useContext(UserContext).name}
+        <Navbar.Section onClick={()=>history.push("/currentuser")}>
+          <Flex justify="center" align="center" gap="xl"> 
+           <Avatar src={useContext(UserContext).photo} radius="xl" size="xl" />
+           <Text fz="xl">{useContext(UserContext).name}</Text> 
+          </Flex>
+          <p></p>
+          <Flex justify="center" align="center" gap="xs">
+            <Text>Get Point：</Text>
+            <Text  fz="lg" c="cyan">{useContext(UserContext).point} </Text>
+            <Text> point</Text>
+          </Flex>
+            
             </Navbar.Section>
+            <Divider my="sm" />
         <Navbar.Section grow mt="md">
           
             <Link to="/member">Show member</Link>
@@ -58,9 +74,10 @@ export default function Frame(props :JSX.Element) {
     //   }
       header={
         <Header height={{ base: 50, md: 70 }} p="md">
-          <div>
+          <Flex gap="md">
+          
           <Link to="/">Top</Link>
-          </div>
+          
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
@@ -72,11 +89,11 @@ export default function Frame(props :JSX.Element) {
               />
             </MediaQuery>
           </div>
+          </Flex>
           <div>{UserList()}</div>
         </Header>
       }
     >
-      <Text>Resize app to see responsive navbar in action</Text>
       <div>{props}</div>
     </AppShell>
   );

@@ -2,17 +2,18 @@ import { Avatar, Table } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { MemberCard } from './MemberCard';
 
-type Member={
+type MemberRank={
     name : string;
     id : string;
     photo : string;
     point : number;
+    rank :number;
   };
 
 export const MemberTable =()=>{
-  const [data, setData] = useState([])
+  const [data, setData] = useState<MemberRank[]>([])
 const get = async () => {
-    const response = await fetch("http://localhost:8080/user",
+    const response = await fetch("http://localhost:8080/ranking",
     //"https://hackathon-ncnl2mzkfa-uc.a.run.app/user?name=taro",
     {
       method: "GET",
@@ -33,8 +34,9 @@ const get = async () => {
 
 
 
-  const rows = data.map((user : Member) => (
+  const rows = data.map((user : MemberRank) => (
     <tr key={user.id}>
+      <td>{user.rank}</td>
       <td>
     <MemberCard user={user}></MemberCard>
         </td>
@@ -47,6 +49,7 @@ const get = async () => {
     <Table>
       <thead>
         <tr>
+        <th>Rank</th>
           <th>Name</th>
           <th>Get point</th>
         </tr>

@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext, forwardRef} from "react";
 import "../../Form";
 import {UserContext} from "../Shared/Context";
-import { Group, Avatar, Text, Accordion } from '@mantine/core';
+import { Group, Avatar, Text, Accordion, ActionIcon, Box, Select  } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
+import { IconDots } from '@tabler/icons';
+
 
 type Contribution= {
     id : string
@@ -17,9 +19,18 @@ type Contribution= {
     update_time : string;
   
   }
-  
 
+type PostCont={
+  id :string
+  to_id :string
+  point: number
+  message: string
+  update_time : string
+}
 export const ToCont = () => {
+
+
+
     const [cont, setCont] = useState([])
     const url = "http://localhost:8080/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
@@ -51,7 +62,18 @@ export const ToCont = () => {
                       post_time : string;
                       update_time : string;
                   }
-                  
+                  const [searchValue, onSearchChange] = useState('');
+interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
+  id: string;
+  name: string;
+  photo: string;
+  label : string;
+}
+
+
+
+
+
                   const AccordionLabel = (item: AccordionLabelProps) =>{
                     return (
                       <>
@@ -73,7 +95,7 @@ export const ToCont = () => {
         <Text>{item.to_name}</Text>
     </div>
       <div>
-        <Text size="sm" color="dimmed" weight={400}>{item.post_time}</Text>
+        <Text size="sm" color="dimmed" weight={400}>{item.post_time}{item.post_time!=item.update_time && (<> (編集済み)</>)}</Text>
         <Text>
           {item.message}
         </Text>
@@ -84,17 +106,24 @@ export const ToCont = () => {
     </>
                     )
                     }
+
+                    
+
                     const items = cont.map((item : Contribution) => (
                       <Accordion.Item value={item.id} key={item.id}>
+                          
                         <Accordion.Control>
+
                           <AccordionLabel {...item} />
+
+   
                         </Accordion.Control>
-                        <Accordion.Panel>
-                          <Text size="sm">{item.message}</Text>
-                        </Accordion.Panel>
+                   
                       </Accordion.Item>
                     ));
                   
-                    return <Accordion chevronPosition="right" variant="contained">{items}</Accordion>;
+                    return <Accordion chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
                   }
   
+
+                  

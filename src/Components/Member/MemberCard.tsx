@@ -17,14 +17,14 @@ export const MemberCard=(props: Props) => {
   return (
     <>
 
-    <UnstyledButton>
+    {/* <UnstyledButton> */}
       <Group>
         <Avatar size={50} src={user.photo}></Avatar>
         <div>
           <Text size="xl">{user.name}</Text>
         </div>
       </Group>
-    </UnstyledButton>
+    {/* </UnstyledButton> */}
     </>
   );
 };

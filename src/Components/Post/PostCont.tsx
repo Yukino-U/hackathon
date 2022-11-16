@@ -25,8 +25,8 @@ const PostCont = () => {
  // const [toId, setToId] = useState<string>("");
   const [message, setMessage]  = useState<string>("");
   const [point, setPoint]  = useState<number>(0);
-  const [post_time, setPostTime] =useState<string>("");
-  const [update_time, setUpdateTime] =useState<string>("");
+  // const [post_time, setPostTime] =useState<string>("");
+  // const [update_time, setUpdateTime] =useState<string>("");
   const [value, setValue ]  =useState<string | null>(null);
   
 
@@ -34,37 +34,41 @@ const PostCont = () => {
     console.log(value)
     e.preventDefault();
     const time = new Date().toLocaleString();
-    setPostTime(time);
-    setUpdateTime(time);
-    console.log(post_time)
+    // setPostTime(time);
+    // setUpdateTime(time);
+    console.log(time)
+    if (!useId){
+      alert("Who are you?");
+      return;
+    };
     if (!value){
       alert("Please select user");
       return;
-    }
+    };
     if(value==useId){
       alert("自分以外の人を選んでください")
       return
-    }
+    };
     if (point<=0){
         alert ("0より大きい整数値を入力してください。");
         return;
-      }
+      };
     if (point%1!=0){
         alert("0より大きい整数値を入力してください。");
         return;
-    }
+    };
     if (message ==""){
         alert("Please write message")
         return;
-    }
+    };
     if (message.length >5000){
       alert("Please enter a message shorter than 5000 characters");
       return;
-    }
-    if (post_time ==""){
+    };
+    if (time ==""){
         alert("Time is null");
         return;
-      }
+      };
     try{
       const result = 
         await fetch("http://localhost:8080/home",{
@@ -77,8 +81,8 @@ const PostCont = () => {
         "to_id" : value,
         "point" : point,
         "message" : message,
-        "post_time": post_time,
-        "update_time": update_time,
+        "post_time": time,
+        "update_time": time,
             }), 
       }
     );
@@ -88,8 +92,8 @@ const PostCont = () => {
     setValue("");
     setMessage("")
     setPoint(0);
-    setPostTime("")
-    setUpdateTime("")
+    // setPostTime("")
+    // setUpdateTime("")
     // get()
   }catch (err){
     console.error(err);
@@ -214,6 +218,7 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       ></input>
+      
     
        <button>Post</button>
     </form>

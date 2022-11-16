@@ -4,7 +4,8 @@ const initialState={
     id : "",
     photo : "",
     name: "",
-    setUser :(id :string, photo : string, name :string)=>{},
+    point : 0,
+    setUser :(id :string, photo : string, name :string, point : number)=>{},
 }
 type Props = {
 	children: ReactNode;
@@ -14,10 +15,12 @@ export const UserProvider : FC<Props> = (props) => {
     const [id, setId] =useState("");
     const [photo, setPhoto] =useState("");
     const [name, setName] =useState("");
-    const setUser =(id : string, photo: string, name: string):void =>{
+    const [point, setPoint] =useState(0);
+    const setUser =(id : string, photo: string, name: string, point : number):void =>{
         setId(id);
         setPhoto(photo);
         setName(name);
+        setPoint(point);
     };
     const { children } = props;
     return (
@@ -25,6 +28,7 @@ export const UserProvider : FC<Props> = (props) => {
             id,
             photo,
             name,
+            point,
             setUser,
           }}>
         {children}
