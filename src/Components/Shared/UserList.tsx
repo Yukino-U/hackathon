@@ -2,6 +2,9 @@ import { useState, useEffect, useContext, memo, FC} from 'react';
 import { Drawer, Button, Group, Box } from '@mantine/core';
 import { UserContext } from './Context';
 import { UserCard } from './UserCard';
+import {RegisterUser} from "./RegisterUser";
+import { useHistory } from 'react-router-dom';
+import { ActiveContext } from './ActiveProvider';
 
 type Member={
   name : string;
@@ -11,7 +14,9 @@ type Member={
 };
 
 
+
 export const UserList=() => {
+  const history = useHistory();
   const [data, setData] = useState([])
   const [opened, setOpened] = useState(false);
   const get = async () => {
@@ -32,11 +37,12 @@ export const UserList=() => {
     },[]
           )
 
-
+  const {set} =useContext(ActiveContext);
   const {setUser} =useContext(UserContext);
   const onSubmit = ( id:string, photo: string, name: string, point : number)  => {
     setUser(id, photo, name, point);
-    console.log(id)
+    set(-1) ;
+    history.push("/");
    }
 return (
 <>
@@ -48,6 +54,8 @@ return (
         size="sm"
         position="right" 
       >
+        <RegisterUser reload={get()} ></RegisterUser>
+        <p></p>
         {data.map((user :Member) => (
               <Box onClick={()=>onSubmit(user.id, user.photo, user.name, user.point)} key={user.id}
               sx={(theme) => ({
@@ -66,6 +74,9 @@ return (
               <UserCard  user={user}  />
             </Box>
             ))}
+          <Box>
+            
+          </Box>
         
       </Drawer>
 {/* <Button  onClick={() => setOpened(true)} color='#EB94E2' */}

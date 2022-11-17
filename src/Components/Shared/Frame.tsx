@@ -72,6 +72,8 @@ export default function Frame(props :JSX.Element) {
       rightSection={item.rightSection}
       icon={<item.icon size={16} stroke={1.5} />}
       onClick={item.rink}
+      color='#8ED1F4'
+      // variant="gradient" gradient={{ from: '#8ED1F4', to: '#EB94E2', deg: 35 }}
     />
     
   ));
@@ -129,11 +131,13 @@ export default function Frame(props :JSX.Element) {
     //   }
       header={
         <Header height={{ base: 70 }} p="md" style={{ display: 'flex', alignItems: 'center' ,justifyContent:'space-between'}} >
-          <Flex gap="md">
+          <Flex gap="md" align="center">
           {/* <Link to="/">Top</Link> */}
           
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              
               <Burger
                 opened={opened}
                 onClick={() => setOpened((o) => !o)}
@@ -142,6 +146,7 @@ export default function Frame(props :JSX.Element) {
                 mr="xl"
               />
             </MediaQuery>
+
           </div>
           {/* <Button onClick={rinkTop}>Top</Button> */}
           <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={rinkTop}><Image src={pic} ></Image></div>
