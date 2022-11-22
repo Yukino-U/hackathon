@@ -49,7 +49,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
     <>
     <Group noWrap>
     <div>
-        <Avatar src="{item.from_photo}" radius="xl" size="lg" />
+        <Avatar src={item.from_photo} radius="xl" size="lg" />
         <Text>{item.from_name}</Text>
     </div>
     <div>
