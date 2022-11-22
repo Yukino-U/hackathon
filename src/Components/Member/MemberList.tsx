@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Drawer, Button, Group, Box } from '@mantine/core';
+import { useState, useEffect } from "react";
+import { Box } from '@mantine/core';
 import {MemberCard} from "./MemberCard"
 import "../../Form";
 type Member={
@@ -9,14 +9,11 @@ type Member={
     point : number;
   }
 
-  
-  
-
 export const MemberList = () => {
     const [data, setData] = useState([])
     const get = async () => {
-        const response = await fetch("http://localhost:8080/user",
-        //"https://hackathon-ncnl2mzkfa-uc.a.run.app/user?name=taro",
+        const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+          // "http://localhost:8080/user",
         {
           method: "GET",
           headers: {
@@ -39,7 +36,6 @@ export const MemberList = () => {
       {data.map((user :Member) => (
         <Box key={user.id}
         sx={(theme) => ({
-          //backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
           textAlign: 'left',
           padding: theme.spacing.xl,
           borderRadius: theme.radius.xl,

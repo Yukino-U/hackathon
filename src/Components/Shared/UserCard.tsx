@@ -16,7 +16,6 @@ export const UserCard=(props: Props) => {
 
   return (
     <>
-
     <UnstyledButton>
       <Group>
         <Avatar size={40} src={user.photo}></Avatar>

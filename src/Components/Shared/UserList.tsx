@@ -13,15 +13,13 @@ type Member={
   point : number;
 };
 
-
-
 export const UserList=() => {
   const history = useHistory();
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Member[]>([])
   const [opened, setOpened] = useState(false);
   const get = async () => {
-      const response = await fetch("http://localhost:8080/user",
-      //"https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+      const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+        // "http://localhost:8080/user",
       {
         method: "GET",
         headers: {
@@ -29,7 +27,7 @@ export const UserList=() => {
         },
       },
     );
-    const nowData = await response.json();
+    const nowData : Member[] = await response.json();
     setData(nowData)
   }
   useEffect(() => {

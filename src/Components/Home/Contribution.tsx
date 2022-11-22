@@ -1,9 +1,8 @@
 import {useState, useEffect} from "react";
-import { Group, Avatar, Text, Accordion, ActionIcon, Box ,Center, Flex, Divider } from '@mantine/core';
+import { Group, Avatar, Text, Box , Flex, Divider } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
-import { IconDots } from '@tabler/icons';
-import "./Contribution.css"
+
 type Contribution= {
     id : string
     from_name : string;
@@ -20,21 +19,17 @@ type Contribution= {
 
     const [cont, setCont] = useState([])
     const getconst = async () => {
-              const response = await fetch("http://localhost:8080/home",
-                //"https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
-                {
-                  method: "GET",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
+      const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
+        // "http://localhost:8080/home",
+         {
+           method: "GET",
+           headers: {"Content-Type": "application/json",},
                 },
               );
-              const nowCont = await response.json();
-              setCont(nowCont)
-            }
-              useEffect(() => {
-                getconst()
-              },[]
+      const nowCont = await response.json();
+      setCont(nowCont)
+        }
+    useEffect(() => {getconst()},[]
                     )
   
 interface AccordionLabelProps {
@@ -54,7 +49,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
     <>
     <Group noWrap>
     <div>
-        <Avatar src={item.from_photo} radius="xl" size="lg" />
+        <Avatar src="{item.from_photo}" radius="xl" size="lg" />
         <Text>{item.from_name}</Text>
     </div>
     <div>
@@ -82,30 +77,21 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
 
 
     const items = cont.map((item : Contribution) => (
-      //   <Accordion.Item value={item.id} key={item.id}>
-                          
-      //   <Accordion.Control>
-      //     <AccordionLabel  {...item} />
 
-
-      //   </Accordion.Control>
-       
-      // </Accordion.Item>
-      <>
+      <div key={item.id}>
       <Flex align="center">
-      <Box key={item.id} color="white">
+      <Box color="white">
             
         <AccordionLabel {...item} />
 
     </Box>
     </Flex>
     <Divider my="sm" />
-    </>
+    </div>
     ));
   
     return <div>
       <Text>All Contribution</Text>
-      {/* <Accordion  chevronPosition="right" variant="contained" chevron="" mx="auto" >{items}</Accordion> */}
       <Divider my="sm" />
       {items}
     </div>;

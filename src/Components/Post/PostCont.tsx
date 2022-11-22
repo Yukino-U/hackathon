@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useContext,forwardRef} from "react";
 import { UserContext } from "../Shared/Context";
-// import Paper from "@mui/material/Paper";
-// import MenuList from "@mui/material/MenuList";
-// import {Box} from "@mui/material";
-import { Select, Group, Avatar, Text, SelectItem, Flex} from '@mantine/core';
-// import { UserList } from "./UserList";
+import { Select, Group, Avatar, Text, SelectItem} from '@mantine/core';
 import "./PostCont.css";
 
 type Member={
@@ -23,20 +19,14 @@ type AddMember={
 
 const PostCont = () => {
   const useId = useContext(UserContext).id;
- // const [toId, setToId] = useState<string>("");
   const [message, setMessage]  = useState<string>("");
   const [point, setPoint]  = useState<number>(0);
-  // const [post_time, setPostTime] =useState<string>("");
-  // const [update_time, setUpdateTime] =useState<string>("");
   const [value, setValue ]  =useState<string | null>(null);
-  
 
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
     console.log(value)
     e.preventDefault();
     const time = new Date().toLocaleString();
-    // setPostTime(time);
-    // setUpdateTime(time);
     console.log(time)
     if (!useId){
       alert("Who are you?");
@@ -72,7 +62,8 @@ const PostCont = () => {
       };
     try{
       const result = 
-        await fetch("http://localhost:8080/home",{
+        await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",{
+          // "http://localhost:8080/home",{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,13 +84,9 @@ const PostCont = () => {
     setValue("");
     setMessage("")
     setPoint(0);
-    // setPostTime("")
-    // setUpdateTime("")
-    // get()
   }catch (err){
     console.error(err);
   }
-    // get()
   };
 
 
@@ -108,8 +95,8 @@ const PostCont = () => {
   const [data, setData] = useState<Member[]>([])
   const [addData, setAddData] = useState<AddMember[]>([])
   const get = async () => {
-      const response = await fetch("http://localhost:8080/user",
-      //"https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+      const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+        // "http://localhost:8080/user",
       {
         method: "GET",
         headers: {
@@ -127,8 +114,6 @@ const PostCont = () => {
     setAddData(users)
   }
 
-
-
   useEffect(() => {
       get()
     },[]
@@ -141,15 +126,11 @@ interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
   label : string;
 }
 
-
-
-
 const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
   ({ id, name, photo, label, ...others }: ItemProps, ref) => (
     <div ref={ref} {...others} key={id}>
       <Group noWrap>
         <Avatar src={photo} />
-        
         <div>
           <Text>{name}</Text>
         </div>
@@ -157,9 +138,6 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     </div>
   )
 );
-
-
-
 
   return (
     <div>
@@ -178,12 +156,8 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
       }
       value={value}
       onChange={setValue}
-      
-
     />
-
-        
-       <label>Point: </label>
+    <label>Point: </label>
       <input
         type={"number"}
         value={point}
@@ -192,13 +166,10 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
 
       <label>Message: </label>
       <textarea
-        // type={"text"}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         className="message"
       ></textarea>
-      
-    
        <button>Post</button>
     </form>
     </div>

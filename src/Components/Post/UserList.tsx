@@ -1,5 +1,4 @@
 import { Select, Group, Avatar, Text, SelectItem } from '@mantine/core';
-import { ContentCutOutlined } from '@mui/icons-material';
 import {useState, useEffect, forwardRef, useContext} from "react";
 import { UserContext } from '../Shared/Context';
 
@@ -16,14 +15,13 @@ type AddMember={
   value : string;
 }
 
-
 export const UserList = () => {
     const [data, setData] = useState<Member[]>([])
     const [addData, setAddData] = useState<AddMember[]>([])
     const useId = useContext(UserContext).id
     const get = async () => {
-        const response = await fetch("http://localhost:8080/user",
-        //"https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+        const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
+          // "http://localhost:8080/user",
         {
           method: "GET",
           headers: {
@@ -41,8 +39,6 @@ export const UserList = () => {
       setAddData(users)
     }
 
-
-
     useEffect(() => {
         get()
       },[]
@@ -55,16 +51,12 @@ export const UserList = () => {
     photo: string;
     label : string;
   }
-
-
-  
-  
+    
   const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     ({ id, name, photo, label, ...others }: ItemProps, ref) => (
       <div ref={ref} {...others} key={id}>
         <Group noWrap>
           <Avatar src={photo} />
-  
           <div>
             <Text>{name}</Text>
           </div>
@@ -89,8 +81,6 @@ export const UserList = () => {
       filter={(value : string, item: SelectItem) =>
         (item.id!=useId)&&(item.name.toLowerCase().includes(value.toLowerCase().trim()))
       }
-      
-
     />
     </>
 

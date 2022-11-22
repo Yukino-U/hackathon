@@ -14,7 +14,6 @@ export const Tab=()=> {
         <Tabs.Tab value="second">貰った貢献</Tabs.Tab>
         <Tabs.Tab value="third">プロフィール編集</Tabs.Tab>
       </Tabs.List>
-
       <Tabs.Panel value="first">{FromCont()}</Tabs.Panel>
       <Tabs.Panel value="second">{ToCont()}</Tabs.Panel>
       <Tabs.Panel value="third">{EditProfile()}</Tabs.Panel>

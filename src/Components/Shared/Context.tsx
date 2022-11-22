@@ -1,6 +1,4 @@
-import React, { useState, useEffect, createContext, useContext,ReactNode, FC  } from "react";
-import { isContext } from "vm";
-// import "./Frame.css"
+import { useState, createContext, ReactNode, FC  } from "react";
 const initialState={
     id : "",
     photo : "",

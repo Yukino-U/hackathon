@@ -10,8 +10,6 @@ export const EditProfile=()=>{
   
     const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
-        // const time = new Date().toLocaleString();
-        // setUpdateTime(time);
         if (name==''){
             alert ("名前を入力してください");
             return;
@@ -22,7 +20,8 @@ export const EditProfile=()=>{
         }
         try{
           const result = 
-            await fetch("http://localhost:8080/editmember",{
+            await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/editmember",{
+                // "http://localhost:8080/editmember",{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -41,13 +40,10 @@ export const EditProfile=()=>{
       }catch (err){
         console.error(err);
       };
-
-      };
-   
+      }; 
   
     return (
-      <>
-         
+      <>     
       <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
       <label>Name: </label>
      <input
@@ -61,11 +57,8 @@ export const EditProfile=()=>{
        value={photo}
        onChange={(e) => setPhoto(e.target.value)}
      ></input>
-     
-   
       <button>Edit</button>
    </form>
-      
       </>)
     ;
 

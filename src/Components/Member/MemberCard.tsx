@@ -1,4 +1,4 @@
-import { UnstyledButton, Group, Avatar, Text } from '@mantine/core';
+import { Group, Avatar, Text } from '@mantine/core';
 
 type Member={
     name : string;
@@ -16,15 +16,12 @@ export const MemberCard=(props: Props) => {
 
   return (
     <>
-
-    {/* <UnstyledButton> */}
       <Group>
         <Avatar size={50} src={user.photo}></Avatar>
         <div>
           <Text size="xl">{user.name}</Text>
         </div>
       </Group>
-    {/* </UnstyledButton> */}
     </>
   );
 };

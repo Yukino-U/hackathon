@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext} from "react";
-import "../../Form";
+import { useState, useEffect, useContext} from "react";
 import {UserContext} from "../Shared/Context";
 import { Group, Avatar, Text, Accordion } from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { IconPencil } from '@tabler/icons';
-//import {EditForm} from "./EditForm";
 import {EditModal} from "./EditModal";
 
 type Contribution= {
@@ -22,16 +20,12 @@ type Contribution= {
     // reload : () =>Promise<void>
   }
 
-  
-  
-
 export const FromCont = () => {
-
     const [cont, setCont] = useState<Contribution[]>([])
-    const url = "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
+    const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/fromcont?id="+useContext(UserContext).id;
+    // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
     const getconst = async () => {
               const response = await fetch(url,
-                //"https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
                 {
                   method: "GET",
                   headers: {
@@ -39,7 +33,7 @@ export const FromCont = () => {
                   },
                 },
               );
-              const nowCont = await response.json();
+              const nowCont : Contribution[] = await response.json();
               setCont(nowCont)
             }
               useEffect(() => {
@@ -62,7 +56,6 @@ export const FromCont = () => {
                   const AccordionLabel = (item: AccordionLabelProps) =>{
                     return (
                       <>
-   
                       <Group noWrap>
                       <div>
                           <Avatar src={item.from_photo} radius="xl" size="lg" />
@@ -87,7 +80,6 @@ export const FromCont = () => {
         
       </div>
     </Group>
-    
     </>
                     )
                     }
@@ -99,8 +91,6 @@ export const FromCont = () => {
                         </Accordion.Control>
                         <Accordion.Panel>
                           <EditModal {...item} reload={getconst} ></EditModal>
-                          {/* {EditModal(item)} */}
-                        
                         </Accordion.Panel>
                       </Accordion.Item>
                     ));

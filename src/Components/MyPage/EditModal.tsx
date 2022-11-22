@@ -1,7 +1,4 @@
 import {FC, useState, useContext } from 'react';
-import { Modal, Button, Group } from '@mantine/core';
-import { render } from '@testing-library/react';
-import { reload } from 'firebase/auth';
 import { useHistory } from 'react-router-dom';
 import {UserContext} from "../Shared/Context";
 import {FromCont} from "./FromUser";
@@ -23,29 +20,13 @@ type EditModalProps = Contribution & {
   reload: () =>Promise<void>
 } 
 export const EditModal: FC<EditModalProps> =(props) =>{
-
-  // const [opened, setOpened] = useState(false);
   const [message, setMessage]  = useState<string>(props.message);
   const [point, setPoint]  = useState<number>(props.point);
-  // const [update_time, setUpdateTime] =useState<string>(props.update_time);
   const history = useHistory();
   const [cont, setCont] = useState([])
-  const url = "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
-  const get = async () => {
-            const response = await fetch(url,
-              //"https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              },
-            );
-            const nowCont = await response.json();
-            setCont(nowCont)
-          };
-           
-
+  const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
+  // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
+  
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
       e.preventDefault();
       const time = new Date().toLocaleString();
@@ -72,7 +53,8 @@ export const EditModal: FC<EditModalProps> =(props) =>{
         }
       try{
         const result = 
-          await fetch("http://localhost:8080/edit",{
+          await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/edit",{
+            // "http://localhost:8080/edit",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -88,29 +70,20 @@ export const EditModal: FC<EditModalProps> =(props) =>{
         }
       );
       if (!result.ok){
-        throw Error('Failed to create user : ${result.status}');
+        throw Error('Failed to edit contribution : ${result.status}');
       }
       await props.reload()
-
-      // setUpdateTime("");
-      //get();
-    
-      //history.push('/currentuser');
-      // {FromCont()}
     }catch (err){
       console.error(err);
     };
-    // history.push('/');
-    // history.push('/currentuser')
-    //window.location.reload()
-
     console.log(props.point)
     };
 
     const onDelete = async()=> {
       try{
         const result = 
-          await fetch("http://localhost:8080/delete",{
+          await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/delete",{
+            // "http://localhost:8080/delete",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -123,16 +96,12 @@ export const EditModal: FC<EditModalProps> =(props) =>{
         }
       );
       if (!result.ok){
-        throw Error('Failed to create user : ${result.status}');
+        throw Error('Failed to delete contribution : ${result.status}');
       }
       await props.reload()
     }catch (err){
       console.error(err);
     };
-    // history.push('/currentuser')
-    // window.location.reload()
- 
-    
     };
  
 
@@ -157,7 +126,6 @@ export const EditModal: FC<EditModalProps> =(props) =>{
     <button>Edit</button>
  </form>
  <button onClick={onDelete}>Delete</button>
-    
     </>)
   ;
 }

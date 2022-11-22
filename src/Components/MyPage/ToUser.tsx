@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useContext, forwardRef} from "react";
-import "../../Form";
+import { useState, useEffect, useContext} from "react";
 import {UserContext} from "../Shared/Context";
-import { Group, Avatar, Text, Accordion, ActionIcon, Box, Select  } from '@mantine/core';
+import { Group, Avatar, Text, Accordion} from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
-import { IconDots } from '@tabler/icons';
-
 
 type Contribution= {
     id : string
@@ -20,22 +17,11 @@ type Contribution= {
   
   }
 
-type PostCont={
-  id :string
-  to_id :string
-  point: number
-  message: string
-  update_time : string
-}
 export const ToCont = () => {
-
-
-
     const [cont, setCont] = useState([])
-    const url = "http://localhost:8080/tocont?id="+useContext(UserContext).id;
+    const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
               const response = await fetch(url,
-                //"https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
                 {
                   method: "GET",
                   headers: {
@@ -62,34 +48,29 @@ export const ToCont = () => {
                       post_time : string;
                       update_time : string;
                   }
-                  const [searchValue, onSearchChange] = useState('');
-interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
-  id: string;
-  name: string;
-  photo: string;
-  label : string;
-}
+//                   const [searchValue, onSearchChange] = useState('');
+// interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
+//   id: string;
+//   name: string;
+//   photo: string;
+//   label : string;
+// }
 
-
-
-
-
-                  const AccordionLabel = (item: AccordionLabelProps) =>{
-                    return (
-                      <>
-          
-                      <Group noWrap>
-                      <div>
-                          <Avatar src={item.from_photo} radius="xl" size="lg" />
-                          <Text>{item.from_name}</Text>
-                      </div>
-                      <div>
-                          <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
-                              <MdOutlineDoubleArrow/>
-                          </IconContext.Provider>
-                          <Text >{item.point} Pt</Text>
-                      </div>
-                      
+const AccordionLabel = (item: AccordionLabelProps) =>{
+  return (
+    <>
+    <Group noWrap>
+      <div>
+        <Avatar src={item.from_photo} radius="xl" size="lg" />
+        <Text>{item.from_name}</Text>
+      </div>
+      <div>
+        <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
+          <MdOutlineDoubleArrow/>
+        </IconContext.Provider>
+        <Text >{item.point} Pt</Text>
+      </div>
+                  
     <div>
         <Avatar src={item.to_photo} radius="xl" size="lg" /> 
         <Text>{item.to_name}</Text>
@@ -104,26 +85,18 @@ interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
     </Group>
     
     </>
-                    )
-                    }
+      )
+       }
 
-                    
-
-                    const items = cont.map((item : Contribution) => (
-                      <Accordion.Item value={item.id} key={item.id}>
-                          
-                        <Accordion.Control>
-
-                          <AccordionLabel {...item} />
-
-   
-                        </Accordion.Control>
-                   
-                      </Accordion.Item>
-                    ));
-                  
-                    return <Accordion chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
-                  }
+const items = cont.map((item : Contribution) => (
+  <Accordion.Item value={item.id} key={item.id}>
+    <Accordion.Control>
+    <AccordionLabel {...item} />
+    </Accordion.Control>
+    </Accordion.Item>
+      ));
+  return <Accordion chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
+    }
   
 
                   

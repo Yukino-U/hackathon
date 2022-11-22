@@ -12,7 +12,6 @@ type Contribution ={
     update_time : string;
 }
 
-
 export function EditForm (props : Contribution) {
     const [message, setMessage]  = useState<string>(props.message);
     const [point, setPoint]  = useState<number>(props.point);
@@ -20,7 +19,6 @@ export function EditForm (props : Contribution) {
 
     const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
-        
         const time = new Date().toLocaleString();
         setUpdateTime(time);
         if (point<=0){
@@ -45,7 +43,8 @@ export function EditForm (props : Contribution) {
           }
         try{
           const result = 
-            await fetch("http://localhost:8080/home",{
+            await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",{
+              // "http://localhost:8080/home",{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -60,7 +59,7 @@ export function EditForm (props : Contribution) {
           }
         );
         if (!result.ok){
-          throw Error('Failed to create user : ${result.status}');
+          throw Error('Failed to post contribution : ${result.status}');
         }
         setMessage("")
         setPoint(0);

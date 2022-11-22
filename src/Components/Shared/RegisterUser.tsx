@@ -1,24 +1,16 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Group } from '@mantine/core';
-import { UserContext } from './Context';
-import { useHistory } from 'react-router-dom';
 
 type Props={
     reload :Promise<void>
 }
 export const RegisterUser = (props:  Props) => {
-  const [opened, setOpened] = useState(false);
-  //const id = useContext(UserContext).id
-  const history = useHistory();
+    const [opened, setOpened] = useState(false);
     const [name, setName]  = useState<string>("");
-    const [photo, setPhoto]  = useState<string>("");
-    //const point = useContext(UserContext).point;
-    const {setUser} =useContext(UserContext);     
+    const [photo, setPhoto]  = useState<string>("");   
   
     const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
-        // const time = new Date().toLocaleString();
-        // setUpdateTime(time);
         if (name==''){
             alert ("名前を入力してください");
             return;
@@ -29,7 +21,9 @@ export const RegisterUser = (props:  Props) => {
         }
         try{
           const result = 
-            await fetch("http://localhost:8080/registermember",{
+            await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/registermember",
+                // "http://localhost:8080/registermember",
+                {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -45,7 +39,6 @@ export const RegisterUser = (props:  Props) => {
         }
         setOpened(false);
         await props.reload;
-        //setUser(id, photo, name, point)
       }catch (err){
         console.error(err);
       };
