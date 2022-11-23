@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { Home } from "./Pages/Home";
 import { Member } from "./Pages/Member";
 import { Post } from "./Pages/Post";
@@ -7,8 +7,9 @@ import { MyPage } from "./Pages/MyPage";
 export const Router = () => {
   console.log("Router")
   return (
-    <Switch>
-      {/* exactをつけると完全一致になります。Homeはexactをつけてあげます */}
+      
+      <BrowserRouter>
+      <Switch>
       <Route exact path="/">
         <Home />
       </Route>
@@ -21,8 +22,10 @@ export const Router = () => {
       <Route path="/postcont">
         <Post/>
       </Route>
+      </Switch>
+      </BrowserRouter>
 
     
-    </Switch>
+    // </Switch>
   );
 };

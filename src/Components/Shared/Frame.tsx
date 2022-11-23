@@ -30,19 +30,19 @@ export const Frame =(props :ReactNode) => {
   const rinkMember =()=>{
     set(1) ;
     history.push("/member");
-  }
+  };
   const rinkPost =()=>{
     set(2) ;
     history.push("/postcont");
-  }
+  };
   const rinkMyPage =()=>{
     set(0) ;
     history.push("/currentuser");
-  }
+  };
   const rinkTop =()=>{
     set(-1) ;
     history.push("/");
-  }
+  };
   const data = [
     {icon: IconStar, label: 'My Page', rightSection: <IconChevronRight size={14} stroke={1.5} />, rink :rinkMyPage,
     },
@@ -61,7 +61,7 @@ export const Frame =(props :ReactNode) => {
       label={item.label}
       rightSection={item.rightSection}
       icon={<item.icon size={16} stroke={1.5} />}
-      onClick={()=>item.rink}
+      onClick={()=>item.rink()}
       color='#8ED1F4'
     />
     
@@ -104,7 +104,7 @@ export const Frame =(props :ReactNode) => {
             </MediaQuery>
 
           </div>
-          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={()=>rinkTop}><Image src={pic} ></Image></div>
+          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={()=>rinkTop()}><Image src={pic} ></Image></div>
           
           </Flex>
           <div>{UserList()}</div>
