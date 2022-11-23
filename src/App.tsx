@@ -2,8 +2,10 @@ import { BrowserRouter } from "react-router-dom";
 import {Router} from "./Router"
 import { UserProvider } from "./Components/Shared/Context";
 import { ActiveProvider } from "./Components/Shared/ActiveProvider";
+// import Loading from "./Components/Shared/Loading"
 document.querySelectorAll('*').forEach(el => el.clientWidth > document.body.clientWidth ? console.log(el) : null);
-function App() {
+const App = ()=> {
+  console.log("App")
 return (
   <UserProvider>
     <ActiveProvider>
@@ -20,7 +22,7 @@ return (
       </>
      
     </header>
-  </div>
+  </div> 
   </ActiveProvider>
   </UserProvider>
 ); }

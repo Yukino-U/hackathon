@@ -1,7 +1,8 @@
-import {useState, useEffect} from "react";
-import { Group, Avatar, Text, Box , Flex, Divider } from '@mantine/core';
+import {useState, useEffect, useContext} from "react";
+import { Group, Avatar, Text, Box , Flex, Divider} from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
+import ReactLoading from "react-loading";
 
 type Contribution= {
     id : string
@@ -15,10 +16,11 @@ type Contribution= {
     update_time : string;
   
   }
-  export const Contribution=() =>  {
-
-    const [cont, setCont] = useState([])
+  export const Contribution=() =>  {  
+    const [cont, setCont] = useState([]);
+    const [isLoading ,setLoading]= useState<boolean>(false);
     const getconst = async () => {
+      setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
         // "http://localhost:8080/home",
          {
@@ -27,10 +29,12 @@ type Contribution= {
                 },
               );
       const nowCont = await response.json();
-      setCont(nowCont)
-        }
-    useEffect(() => {getconst()},[]
-                    )
+      setCont(nowCont);
+      setLoading(false);
+      console.log("false")  
+        };
+  useEffect(() => {getconst();},[]
+                    );
   
 interface AccordionLabelProps {
     id : string;
@@ -45,8 +49,8 @@ interface AccordionLabelProps {
 }
 
 const AccordionLabel = (item: AccordionLabelProps) =>{
-  return (
-    <>
+
+    return <>
     <Group noWrap>
     <div>
         <Avatar src={item.from_photo} radius="xl" size="lg" />
@@ -72,8 +76,9 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
       </div>
     </Group>
     </>
-  );
-}
+    ;
+  }
+
 
 
     const items = cont.map((item : Contribution) => (
@@ -90,9 +95,29 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
     </div>
     ));
   
-    return <div>
+
+    if (isLoading) {
+      return (
+        <Flex justify="center" align="center"> 
+        <section className="flex justify-center items-center h-screen">
+          <div>
+            <ReactLoading
+              type="spin"
+              color="#ebc634"
+              height="100px"
+              width="100px"
+              className="mx-auto"
+            />
+            <p className="text-center mt-3">loading</p>
+          </div>
+        </section>
+        </Flex>
+      );
+    } else {
+      return <div>
       <Text>All Contribution</Text>
       <Divider my="sm" />
       {items}
     </div>;
   }
+}

@@ -30,19 +30,19 @@ export const UserList = () => {
         },
       );
       const nowData: Member[] = await response.json();
-      setData(nowData)
+      ()=>setData(nowData);
       const users = nowData.map((user : Member)=>{
         return {...user,
         label : user.name,
         value: user.name}
-      })
-      setAddData(users)
-    }
+      });
+      ()=>setAddData(users);
+    };
 
     useEffect(() => {
-        get()
+        get();
       },[]
-            )
+            );
   const [searchValue, onSearchChange] = useState('');
 
   interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
@@ -76,7 +76,7 @@ export const UserList = () => {
       data={addData}
       searchable
       searchValue={searchValue}
-      onSearchChange={onSearchChange}
+      onSearchChange={()=>onSearchChange}
       nothingFound="Nothing found"
       filter={(value : string, item: SelectItem) =>
         (item.id!=useId)&&(item.name.toLowerCase().includes(value.toLowerCase().trim()))

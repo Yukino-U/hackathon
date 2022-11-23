@@ -11,6 +11,7 @@ type Props = {
 };
 export const UserContext = createContext(initialState)
 export const UserProvider : FC<Props> = (props) => {
+    console.log("User")
     const [id, setId] =useState("");
     const [photo, setPhoto] =useState("");
     const [name, setName] =useState("");

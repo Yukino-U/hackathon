@@ -28,12 +28,12 @@ export const UserList=() => {
       },
     );
     const nowData : Member[] = await response.json();
-    setData(nowData)
-  }
+    setData(nowData);
+  };
   useEffect(() => {
-      get()
+      get();
     },[]
-          )
+          );
 
   const {set} =useContext(ActiveContext);
   const {setUser} =useContext(UserContext);

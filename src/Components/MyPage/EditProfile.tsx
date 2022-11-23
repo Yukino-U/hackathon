@@ -2,6 +2,7 @@ import {UserContext} from "../Shared/Context";
 import { useState , useContext} from 'react';
 
 export const EditProfile=()=>{
+  // console.log("Edit");
     const id = useContext(UserContext).id
     const [name, setName]  = useState<string>(useContext(UserContext).name);
     const [photo, setPhoto]  = useState<string>(useContext(UserContext).photo);
@@ -36,7 +37,7 @@ export const EditProfile=()=>{
         if (!result.ok){
           throw Error('Failed to edit profile : ${result.status}');
         }
-        setUser(id, photo, name, point)
+        setUser(id, photo, name, point);
       }catch (err){
         console.error(err);
       };
@@ -44,7 +45,7 @@ export const EditProfile=()=>{
   
     return (
       <>     
-      <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+      <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
       <label>Name: </label>
      <input
        type={"string"}

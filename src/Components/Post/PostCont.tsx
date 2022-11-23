@@ -82,7 +82,7 @@ const PostCont = () => {
       throw Error('Failed to create user : ${result.status}');
     }
     setValue("");
-    setMessage("")
+    setMessage("");
     setPoint(0);
   }catch (err){
     console.error(err);
@@ -105,19 +105,19 @@ const PostCont = () => {
       },
     );
     const nowData: Member[] = await response.json();
-    setData(nowData)
+    setData(nowData);
     const users = nowData.map((user : Member)=>{
       return {...user,
       label : user.name,
       value: user.id}
-    })
-    setAddData(users)
+    });
+    setAddData(users);
   }
 
   useEffect(() => {
-      get()
+      get();
     },[]
-          )
+          );
 const [searchValue, onSearchChange] = useState('');
 interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
   id: string;
@@ -149,13 +149,13 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
       data={addData}
       searchable
       searchValue={searchValue}
-      onSearchChange={onSearchChange}
+      onSearchChange={()=>onSearchChange}
       nothingFound="Nothing found"
       filter={(value : string, item: SelectItem) =>
         (item.id!=useId)&&(item.name.toLowerCase().includes(value.toLowerCase().trim()))
       }
       value={value}
-      onChange={setValue}
+      onChange={()=>setValue}
     />
     <label>Point: </label>
       <input

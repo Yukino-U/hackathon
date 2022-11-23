@@ -5,6 +5,7 @@ import { Post } from "./Pages/Post";
 import { MyPage } from "./Pages/MyPage";
 
 export const Router = () => {
+  console.log("Router")
   return (
     <Switch>
       {/* exactをつけると完全一致になります。Homeはexactをつけてあげます */}

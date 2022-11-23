@@ -1,4 +1,4 @@
-import { useState , useContext} from 'react';
+import { useState , useContext, ReactNode} from 'react';
 import {
   AppShell,
   Avatar,
@@ -21,7 +21,7 @@ import { IconAward , IconSend, IconChevronRight, IconStar} from '@tabler/icons';
 import { ActiveContext } from './ActiveProvider';
 import pic from "./Logo.jpg";
 
-export default function Frame(props :JSX.Element) {
+export const Frame =(props :ReactNode) => {
   const {set} =useContext(ActiveContext);
   const active =useContext(ActiveContext).active
   const history = useHistory();
@@ -61,7 +61,7 @@ export default function Frame(props :JSX.Element) {
       label={item.label}
       rightSection={item.rightSection}
       icon={<item.icon size={16} stroke={1.5} />}
-      onClick={item.rink}
+      onClick={()=>item.rink}
       color='#8ED1F4'
     />
     
@@ -104,7 +104,7 @@ export default function Frame(props :JSX.Element) {
             </MediaQuery>
 
           </div>
-          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={rinkTop}><Image src={pic} ></Image></div>
+          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={()=>rinkTop}><Image src={pic} ></Image></div>
           
           </Flex>
           <div>{UserList()}</div>

@@ -54,7 +54,7 @@ export const RegisterUser = (props:  Props) => {
         fullScreen
       >
         
-        <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+        <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
       <label>Name: </label>
      <input
        type={"string"}

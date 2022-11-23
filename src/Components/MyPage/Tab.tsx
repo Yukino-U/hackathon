@@ -4,10 +4,12 @@ import {ToCont} from "./ToUser"
 import { FromCont } from './FromUser';
 import { EditProfile } from './EditProfile';
 
-export const Tab=()=> {
+export const Tab =()=> {
+  // console.log("Tab");
   const [activeTab, setActiveTab] = useState<string | null>('first');
 
   return (
+  
     <Tabs value={activeTab} onTabChange={setActiveTab}>
       <Tabs.List>
         <Tabs.Tab value="first">送った貢献</Tabs.Tab>

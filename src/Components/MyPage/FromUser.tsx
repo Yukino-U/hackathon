@@ -21,6 +21,7 @@ type Contribution= {
   }
 
 export const FromCont = () => {
+  // console.log("From");
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/fromcont?id="+useContext(UserContext).id;
     // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
@@ -34,12 +35,10 @@ export const FromCont = () => {
                 },
               );
               const nowCont : Contribution[] = await response.json();
-              setCont(nowCont)
-            }
-              useEffect(() => {
-                getconst()
-              },[]
-                    )
+              setCont(nowCont);
+            };
+              useEffect(() => {getconst()},[]
+                    );
   
                     interface AccordionLabelProps {
                       id : string;
@@ -53,55 +52,52 @@ export const FromCont = () => {
                       update_time : string;
                   }
                   
-                  const AccordionLabel = (item: AccordionLabelProps) =>{
-                    return (
-                      <>
-                      <Group noWrap>
-                      <div>
-                          <Avatar src={item.from_photo} radius="xl" size="lg" />
-                          <Text>{item.from_name}</Text>
-                      </div>
-                      <div>
-                          <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
-                              <MdOutlineDoubleArrow/>
-                          </IconContext.Provider>
-                          <Text >{item.point} Pt</Text>
-                      </div>
-                      
-    <div>
-        <Avatar src={item.to_photo} radius="xl" size="lg" /> 
-        <Text>{item.to_name}</Text>
-    </div>
-      <div>
-        <Text size="sm" color="dimmed" weight={400}>{item.post_time}{item.post_time!=item.update_time && (<> (編集済み)</>)}</Text>
-        <Text>
-          {item.message}
-        </Text>
-        
-      </div>
-    </Group>
+    const AccordionLabel = (item: AccordionLabelProps) =>{
+      // console.log("ALavel")
+      return (
+        <>
+        <Group noWrap>
+          <div>
+            <Avatar src={item.from_photo} radius="xl" size="lg" />
+            <Text>{item.from_name}</Text>
+          </div>
+          <div>
+            <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
+               <MdOutlineDoubleArrow/>
+            </IconContext.Provider>
+            <Text >{item.point} Pt</Text>
+          </div>               
+          <div>
+            <Avatar src={item.to_photo} radius="xl" size="lg" /> 
+            <Text>{item.to_name}</Text>
+          </div>
+          <div>
+            <Text size="sm" color="dimmed" weight={400}>{item.post_time}{item.post_time!=item.update_time && (<> (編集済み)</>)}</Text>
+          <Text>{item.message}</Text> 
+          </div>
+      </Group>
     </>
-                    )
-                    }
-                    const items = cont.map((item : Contribution) => (
-                     
-                      <Accordion.Item value={item.id} key={item.id}>
-                        <Accordion.Control >
-                          <AccordionLabel {...item}/>
-                        </Accordion.Control>
-                        <Accordion.Panel>
-                          <EditModal {...item} reload={getconst} ></EditModal>
-                        </Accordion.Panel>
-                      </Accordion.Item>
-                    ));
+    )
+  }
+    const items =()=>{
+      // console.log("items")
+      return( cont.map((item : Contribution) => (
+      <Accordion.Item value={item.id} key={item.id}>
+        <Accordion.Control >
+          <AccordionLabel {...item}/>
+        </Accordion.Control>
+          <Accordion.Panel>
+            <EditModal {...item} reload={getconst} ></EditModal>
+          </Accordion.Panel>
+       </Accordion.Item>
+     )))}
                   
-                    return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
-                      chevron: {
-                        '&[data-rotate]': {
-                          transform: 'rotate(360deg)',
-                        },} } }
-                        chevronPosition="right" variant="contained"
-                        >
-                          {items}</Accordion>;
+  return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
+          chevron: {
+             '&[data-rotate]': {transform: 'rotate(360deg)',},
+            } } }
+           chevronPosition="right" variant="contained"
+           >
+          {items()}</Accordion>;
 }
   

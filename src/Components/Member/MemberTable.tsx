@@ -25,12 +25,11 @@ const get = async () => {
   const nowData = await response.json();
   setData(nowData)
   console.log(nowData)
-}
+};
   useEffect(() => {
-    get()
+    get();
   },[]
-
-  )
+  );
 
   const rows = data.map((user : MemberRank) => (
     <tr key={user.id}>

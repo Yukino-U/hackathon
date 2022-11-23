@@ -61,9 +61,9 @@ export function EditForm (props : Contribution) {
         if (!result.ok){
           throw Error('Failed to post contribution : ${result.status}');
         }
-        setMessage("")
+        setMessage("");
         setPoint(0);
-        setUpdateTime("")
+        setUpdateTime("");
       }catch (err){
         console.error(err);
       }

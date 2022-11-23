@@ -23,14 +23,13 @@ export const EditModal: FC<EditModalProps> =(props) =>{
   const [message, setMessage]  = useState<string>(props.message);
   const [point, setPoint]  = useState<number>(props.point);
   const history = useHistory();
-  const [cont, setCont] = useState([])
+  const [cont, setCont] = useState<Contribution[]>([])
   const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
   // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
   
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
       e.preventDefault();
       const time = new Date().toLocaleString();
-      // setUpdateTime(time);
       if (point<=0){
           alert ("0より大きい整数値を入力してください。");
           return;
@@ -108,7 +107,7 @@ export const EditModal: FC<EditModalProps> =(props) =>{
   return (
     <>
        
-    <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+    <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
     <label>Point: </label>
    <input
      type={"number"}
@@ -125,7 +124,7 @@ export const EditModal: FC<EditModalProps> =(props) =>{
  
     <button>Edit</button>
  </form>
- <button onClick={onDelete}>Delete</button>
+ <button onClick={()=>onDelete}>Delete</button>
     </>)
   ;
 }

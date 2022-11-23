@@ -18,7 +18,7 @@ type Contribution= {
   }
 
 export const ToCont = () => {
-    const [cont, setCont] = useState([])
+    const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
               const response = await fetch(url,
@@ -30,12 +30,12 @@ export const ToCont = () => {
                 },
               );
               const nowCont = await response.json();
-              setCont(nowCont)
+            setCont(nowCont);
             }
               useEffect(() => {
-                getconst()
+                getconst();
               },[]
-                    )
+                    );
   
                     interface AccordionLabelProps {
                       id : string;
