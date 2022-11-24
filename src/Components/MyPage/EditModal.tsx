@@ -107,7 +107,7 @@ export const EditModal: FC<EditModalProps> =(props) =>{
   return (
     <>
        
-    <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+    <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
     <label>Point: </label>
    <input
      type={"number"}
