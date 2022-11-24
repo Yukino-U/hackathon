@@ -1,6 +1,7 @@
-import { Table } from '@mantine/core';
+import { Table, Flex } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { MemberCard } from './MemberCard';
+import ReactLoading from "react-loading";
 
 type MemberRank={
     name : string;
@@ -11,8 +12,10 @@ type MemberRank={
   };
 
 export const MemberTable =()=>{
-  const [data, setData] = useState<MemberRank[]>([])
+  const [data, setData] = useState<MemberRank[]>([]);
+  const [isLoading ,setLoading]= useState<boolean>(true);
 const get = async () => {
+ 
     const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/ranking",
       // "http://localhost:8080/ranking",
     {
@@ -23,13 +26,11 @@ const get = async () => {
     },
   );
   const nowData = await response.json();
-  setData(nowData)
-  console.log(nowData)
+  setData(nowData);
+  console.log(nowData);
+  setLoading(false);
 };
-  useEffect(() => {
-    get();
-  },[]
-  );
+useEffect(() => {get()},[]);
 
   const rows = data.map((user : MemberRank) => (
     <tr key={user.id}>
@@ -42,6 +43,24 @@ const get = async () => {
     </tr>
   ));
 
+  if (isLoading) {
+    return (
+      <Flex justify="center" align="center"> 
+      <section className="flex justify-center items-center h-screen">
+        <div>
+          <ReactLoading
+            type="spin"
+            color="#ebc634"
+            height="100px"
+            width="100px"
+            className="mx-auto"
+          />
+          <p className="text-center mt-3">loading</p>
+        </div>
+      </section>
+      </Flex>
+    );
+  } else {
   return (
     <Table>
       <thead>
@@ -54,4 +73,5 @@ const get = async () => {
       <tbody>{rows}</tbody>
     </Table>
   );
+}
 }

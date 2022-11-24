@@ -11,7 +11,7 @@ export const ActiveContext = createContext(initialState)
 export const ActiveProvider : FC<Props> = (props) => {
     console.log("Actibe");
     const [active, setActive] =useState(-1);
-    const set =(active : number):void =>{
+    const set =(active : number) =>{
         setActive(active)}
     const { children } = props;
     return (

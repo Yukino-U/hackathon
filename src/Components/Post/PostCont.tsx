@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext,forwardRef} from "react";
 import { UserContext } from "../Shared/Context";
-import { Select, Group, Avatar, Text, SelectItem} from '@mantine/core';
+import { Select, Group, Avatar, Text, SelectItem, Flex} from '@mantine/core';
 import "./PostCont.css";
+import ReactLoading from "react-loading";
 
 type Member={
   name : string;
@@ -19,10 +20,10 @@ type AddMember={
 
 const PostCont = () => {
   const useId = useContext(UserContext).id;
-  const [message, setMessage]  = useState<string>("");
-  const [point, setPoint]  = useState<number>(0);
-  const [value, setValue ]  =useState<string | null>(null);
-
+  const [message, Message]  = useState<string>("");
+  const [point, Point]  = useState<number>(0);
+  const [value, Value ]  =useState<string | null>(null);
+  const [isLoading ,setLoading]= useState<boolean>(true); 
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
     console.log(value)
     e.preventDefault();
@@ -81,9 +82,9 @@ const PostCont = () => {
     if (!result.ok){
       throw Error('Failed to create user : ${result.status}');
     }
-    setValue("");
-    setMessage("");
-    setPoint(0);
+    Value("");
+    Message("");
+    Point(0);
   }catch (err){
     console.error(err);
   }
@@ -112,12 +113,10 @@ const PostCont = () => {
       value: user.id}
     });
     setAddData(users);
+    setLoading(false);
   }
 
-  useEffect(() => {
-      get();
-    },[]
-          );
+  useEffect(() => {get()},[]);
 const [searchValue, onSearchChange] = useState('');
 interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
   id: string;
@@ -139,6 +138,25 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
   )
 );
 
+if (isLoading) {
+  return (
+    <Flex justify="center" align="center"> 
+    <section className="flex justify-center items-center h-screen">
+      <div>
+        <ReactLoading
+          type="spin"
+          color="#ebc634"
+          height="100px"
+          width="100px"
+          className="mx-auto"
+        />
+        <p className="text-center mt-3">loading</p>
+      </div>
+    </section>
+    </Flex>
+  );
+}else{
+
   return (
     <div>
     <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
@@ -155,25 +173,25 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
         (item.id!=useId)&&(item.name.toLowerCase().includes(value.toLowerCase().trim()))
       }
       value={value}
-      onChange={()=>setValue}
+      onChange={()=>Value}
     />
     <label>Point: </label>
       <input
         type={"number"}
         value={point}
-        onChange={(e) => setPoint(e.target.valueAsNumber)}
+        onChange={(e) => Point(e.target.valueAsNumber)}
       ></input>
 
       <label>Message: </label>
       <textarea
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => Message(e.target.value)}
         className="message"
       ></textarea>
        <button>Post</button>
     </form>
     </div>
   );
-};
+};}
 
 export default PostCont;

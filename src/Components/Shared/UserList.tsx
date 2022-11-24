@@ -30,11 +30,7 @@ export const UserList=() => {
     const nowData : Member[] = await response.json();
     setData(nowData);
   };
-  useEffect(() => {
-      get();
-    },[]
-          );
-
+  useEffect(() => {get()},[]);
   const {set} =useContext(ActiveContext);
   const {setUser} =useContext(UserContext);
   const onSubmit = ( id:string, photo: string, name: string, point : number)  => {

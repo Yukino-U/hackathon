@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext} from "react";
 import {UserContext} from "../Shared/Context";
-import { Group, Avatar, Text, Accordion} from '@mantine/core';
+import { Group, Avatar, Text, Accordion, Flex} from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
+import ReactLoading from "react-loading";
 
 type Contribution= {
     id : string
@@ -18,6 +19,7 @@ type Contribution= {
   }
 
 export const ToCont = () => {
+  const [isLoading ,setLoading]= useState<boolean>(true); 
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
@@ -31,11 +33,10 @@ export const ToCont = () => {
               );
               const nowCont = await response.json();
             setCont(nowCont);
+            setLoading(false);
             }
-              useEffect(() => {
-                getconst();
-              },[]
-                    );
+            useEffect(() => {getconst()},[]);
+                    
   
                     interface AccordionLabelProps {
                       id : string;
@@ -95,8 +96,27 @@ const items = cont.map((item : Contribution) => (
     </Accordion.Control>
     </Accordion.Item>
       ));
-  return <Accordion chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
-    }
+  
+  
+      if (isLoading) {
+        return (
+          <Flex justify="center" align="center"> 
+          <section className="flex justify-center items-center h-screen">
+            <div>
+              <ReactLoading
+                type="spin"
+                color="#ebc634"
+                height="100px"
+                width="100px"
+                className="mx-auto"
+              />
+              <p className="text-center mt-3">loading</p>
+            </div>
+          </section>
+          </Flex>
+        );
+      } else { return <Accordion chevronPosition="right" variant="contained" chevron="" mx="auto">{items}</Accordion>;
+    }}
   
 
                   

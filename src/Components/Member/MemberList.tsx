@@ -22,12 +22,9 @@ export const MemberList = () => {
         },
       );
       const nowData = await response.json();
-      ()=>setData(nowData)
+      setData(nowData);
     };
-      useEffect(() => {
-        get();
-      },[]
-      );
+      useEffect(() => {get()},[]);
 
     return (
       <div>

@@ -30,19 +30,16 @@ export const UserList = () => {
         },
       );
       const nowData: Member[] = await response.json();
-      ()=>setData(nowData);
+      setData(nowData);
       const users = nowData.map((user : Member)=>{
         return {...user,
         label : user.name,
         value: user.name}
       });
-      ()=>setAddData(users);
+      setAddData(users);
     };
 
-    useEffect(() => {
-        get();
-      },[]
-            );
+    useEffect(() => {get()},[]);
   const [searchValue, onSearchChange] = useState('');
 
   interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {

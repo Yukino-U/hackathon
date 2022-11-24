@@ -18,9 +18,8 @@ type Contribution= {
   }
   export const Contribution=() =>  {  
     const [cont, setCont] = useState([]);
-    const [isLoading ,setLoading]= useState<boolean>(false);
+    const [isLoading ,setLoading]= useState<boolean>(true);
     const getconst = async () => {
-      setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
         // "http://localhost:8080/home",
          {
@@ -33,8 +32,7 @@ type Contribution= {
       setLoading(false);
       console.log("false")  
         };
-  useEffect(() => {getconst();},[]
-                    );
+        useEffect(() => {getconst()},[]);
   
 interface AccordionLabelProps {
     id : string;

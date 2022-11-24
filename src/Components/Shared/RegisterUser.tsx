@@ -50,7 +50,7 @@ export const RegisterUser = (props:  Props) => {
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
-        title="This is fullscreen modal!"
+        // title="This is fullscreen modal!"
         fullScreen
       >
         
@@ -75,7 +75,7 @@ export const RegisterUser = (props:  Props) => {
       </Modal>
 
       <Group position="center">
-        <Button onClick={() => setOpened(true)}　variant="gradient" gradient={{ from: '#8ED1F4', to: '#EB94E2', deg: 35 }}>新規ユーザー作成</Button>
+        <Button onClick={() => setOpened(true)} variant="gradient" gradient={{ from: '#8ED1F4', to: '#EB94E2', deg: 35 }}>新規ユーザー作成</Button>
       </Group>
     </>
   );

@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext} from "react";
 import {UserContext} from "../Shared/Context";
-import { Group, Avatar, Text, Accordion } from '@mantine/core';
+import { Group, Avatar, Text, Accordion , Flex} from '@mantine/core';
 import {MdOutlineDoubleArrow} from "react-icons/md";
 import { IconContext } from 'react-icons';
 import { IconPencil } from '@tabler/icons';
 import {EditModal} from "./EditModal";
+import ReactLoading from "react-loading";
 
 type Contribution= {
     id : string
@@ -22,6 +23,7 @@ type Contribution= {
 
 export const FromCont = () => {
   // console.log("From");
+  const [isLoading ,setLoading]= useState<boolean>(true); 
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/fromcont?id="+useContext(UserContext).id;
     // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
@@ -36,9 +38,9 @@ export const FromCont = () => {
               );
               const nowCont : Contribution[] = await response.json();
               setCont(nowCont);
+              setLoading(false)
             };
-              useEffect(() => {getconst()},[]
-                    );
+              useEffect(() => {getconst()},[]);
   
                     interface AccordionLabelProps {
                       id : string;
@@ -92,12 +94,29 @@ export const FromCont = () => {
        </Accordion.Item>
      )))}
                   
-  return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
+     if (isLoading) {
+      return (
+        <Flex justify="center" align="center"> 
+        <section className="flex justify-center items-center h-screen">
+          <div>
+            <ReactLoading
+              type="spin"
+              color="#ebc634"
+              height="100px"
+              width="100px"
+              className="mx-auto"
+            />
+            <p className="text-center mt-3">loading</p>
+          </div>
+        </section>
+        </Flex>
+      );
+    } else {return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
           chevron: {
              '&[data-rotate]': {transform: 'rotate(360deg)',},
             } } }
            chevronPosition="right" variant="contained"
            >
           {items()}</Accordion>;
-}
+}}
   
