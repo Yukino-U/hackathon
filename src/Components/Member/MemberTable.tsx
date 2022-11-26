@@ -13,9 +13,9 @@ type MemberRank={
 
 export const MemberTable =()=>{
   const [data, setData] = useState<MemberRank[]>([]);
-  const [isLoading ,setLoading]= useState<boolean>(true);
+  const [isLoading ,setLoading]= useState<boolean>(false);
 const get = async () => {
- 
+  setLoading(true);
     const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/ranking",
       // "http://localhost:8080/ranking",
     {
@@ -27,7 +27,7 @@ const get = async () => {
   );
   const nowData = await response.json();
   setData(nowData);
-  console.log(nowData);
+  // console.log(nowData);
   setLoading(false);
 };
 useEffect(() => {get()},[]);
@@ -56,7 +56,7 @@ useEffect(() => {get()},[]);
             width="100px"
             className="mx-auto"
           />
-          <p className="text-center mt-3">loading</p>
+          <p className="text-center mt-3">Loading...</p>
         </div>
       </section>
       </Flex>

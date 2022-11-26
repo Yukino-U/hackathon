@@ -5,7 +5,7 @@ import { Post } from "./Pages/Post";
 import { MyPage } from "./Pages/MyPage";
 
 export const Router = () => {
-  console.log("Router")
+  // console.log("Router")
   return (
       
       <BrowserRouter>

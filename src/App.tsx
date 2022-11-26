@@ -5,7 +5,7 @@ import { ActiveProvider } from "./Components/Shared/ActiveProvider";
 // import Loading from "./Components/Shared/Loading"
 // document.querySelectorAll('*').forEach(el => el.clientWidth > document.body.clientWidth ? console.log(el) : null);
 const App = ()=> {
-  console.log("App")
+  // console.log("App")
 return (
   <UserProvider>
     <ActiveProvider>

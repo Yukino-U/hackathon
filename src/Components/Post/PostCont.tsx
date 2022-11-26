@@ -24,12 +24,13 @@ const PostCont = () => {
   const [message, Message]  = useState<string>("");
   const [point, Point]  = useState<number>(0);
   const [value, Value ]  =useState<string | null>(null);
-  const [isLoading ,setLoading]= useState<boolean>(true); 
+  const [isLoading ,setLoading]= useState<boolean>(false); 
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
-    console.log(value)
+    setLoading(true);
+    //console.log(value)
     e.preventDefault();
     const time = new Date().toLocaleString();
-    console.log(time)
+    // console.log(time)
     if (!useId){
       alert("Who are you?");
       return;
@@ -152,7 +153,7 @@ if (isLoading) {
           width="100px"
           className="mx-auto"
         />
-        <p className="text-center mt-3">loading</p>
+        <p className="text-center mt-3">Loading...</p>
       </div>
     </section>
     </Flex>

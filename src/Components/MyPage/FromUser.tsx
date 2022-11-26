@@ -23,11 +23,12 @@ type Contribution= {
 
 export const FromCont = () => {
   // console.log("From");
-  const [isLoading ,setLoading]= useState<boolean>(true); 
+  const [isLoading ,setLoading]= useState<boolean>(false); 
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/fromcont?id="+useContext(UserContext).id;
     // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
     const getconst = async () => {
+      setLoading(true);
               const response = await fetch(url,
                 {
                   method: "GET",
@@ -64,7 +65,7 @@ export const FromCont = () => {
             <Text>{item.from_name}</Text>
           </div>
           <div>
-            <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
+            <IconContext.Provider value={{ color: '#8ED1F4', size: '30px' }} >
                <MdOutlineDoubleArrow/>
             </IconContext.Provider>
             <Text >{item.point} Pt</Text>
@@ -107,12 +108,12 @@ export const FromCont = () => {
               width="100px"
               className="mx-auto"
             />
-            <p className="text-center mt-3">loading</p>
+            <p className="text-center mt-3">Loading...</p>
           </div>
         </section>
         </Flex>
       );
-    } else {return <Accordion  chevron={<IconPencil size={16} color="blue" />} styles={{
+    } else {return <Accordion  chevron={<IconPencil size={20} color='#EB94E2' offset={1}  />} styles={{
           chevron: {
              '&[data-rotate]': {transform: 'rotate(360deg)',},
             } } }

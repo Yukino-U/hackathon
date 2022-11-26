@@ -18,8 +18,9 @@ type Contribution= {
   }
   export const Contribution=() =>  {  
     const [cont, setCont] = useState([]);
-    const [isLoading ,setLoading]= useState<boolean>(true);
+    const [isLoading ,setLoading]= useState<boolean>(false);
     const getconst = async () => {
+      setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
         // "http://localhost:8080/home",
          {
@@ -55,7 +56,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         <Text>{item.from_name}</Text>
     </div>
     <div>
-        <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
+        <IconContext.Provider value={{ color: '#8ED1F4', size: '30px' }}>
             <MdOutlineDoubleArrow/>
         </IconContext.Provider>
         <Text >{item.point} Pt</Text>
@@ -89,7 +90,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
 
     </Box>
     </Flex>
-    <Divider my="sm" />
+    <Divider my="sm" color='#8ED1F4'/>
     </div>
     ));
   
@@ -107,7 +108,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
               width="100px"
               className="mx-auto"
             />
-            <p className="text-center mt-3">loading</p>
+            <p className="text-center mt-3">Loading...</p>
           </div>
         </section>
         </Flex>
@@ -115,7 +116,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
     } else {
       return <div>
       <Text>All Contribution</Text>
-      <Divider my="sm" />
+      <Divider my="sm" color='#8ED1F4' />
       {items}
     </div>;
   }

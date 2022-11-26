@@ -11,7 +11,7 @@ type Props = {
 };
 export const UserContext = createContext(initialState)
 export const UserProvider = ({children} :Props) => {
-    console.log("User")
+    // console.log("User")
     const [id, setId] =useState("");
     const [photo, setPhoto] =useState("");
     const [name, setName] =useState("");

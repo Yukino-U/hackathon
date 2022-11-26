@@ -62,7 +62,7 @@ export const UserList = () => {
     )
   );
 
-  console.log(addData)
+  // console.log(addData)
 
   return (
     <>

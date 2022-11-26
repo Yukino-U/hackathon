@@ -15,12 +15,13 @@ type Member={
 };
 
 export const UserList=() => {
-  console.log("UserLIst")
-  const [isLoading ,setLoading]= useState<boolean>(true); 
+  // console.log("UserLIst")
+  const [isLoading ,setLoading]= useState<boolean>(false); 
   const history = useHistory();
   const [data, setData] = useState<Member[]>([])
   const [opened, setOpened] = useState(false);
   const get = async () => {
+    setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
         // "http://localhost:8080/user",
       {
@@ -49,13 +50,11 @@ return (
       <Drawer
         opened={opened}
         onClose={() => setOpened(false)}
-        title="Select user"
+        // title="Select user"
         padding="sm"
         size="sm"
         position="right" 
       >
-        <RegisterUser reload={get} ></RegisterUser>
-        <p></p>
         {isLoading &&    <Flex justify="center" align="center"> 
     <section className="flex justify-center items-center h-screen">
       <div>
@@ -63,16 +62,18 @@ return (
         <ReactLoading
           type="spin"
           color='#8ED1F4'
-          height="100px"
-          width="100px"
+          height="50px"
+          width="50px"
           className="mx-auto"
         />
-        <p className="text-center mt-3">loading</p>
+        <p className="text-center mt-3">Loading...</p>
       </div>
     </section>
     </Flex>}
-        
+    {isLoading==false &&
         <>
+        <RegisterUser reload={get} ></RegisterUser>
+        <p></p>
         {data.map((user :Member) => (
               <Box onClick={()=>onSubmit(user)} key={user.id} className="usercard"
               sx={(theme) => ({
@@ -95,10 +96,12 @@ return (
             
             ))}
             </>
+}
           <Box>
         
             
           </Box>
+
         
       </Drawer>
 {/* <Button  onClick={() => setOpened(true)} color='#EB94E2' */}

@@ -9,7 +9,7 @@ type Props = {
 };
 export const ActiveContext = createContext(initialState)
 export const ActiveProvider : FC<Props> = (props) => {
-    console.log("Actibe");
+    // console.log("Actibe");
     const [active, setActive] =useState(-1);
     const set =(a : number) =>{
         setActive(a)}

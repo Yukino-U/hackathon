@@ -75,7 +75,7 @@ export const EditModal: FC<EditModalProps> =(props) =>{
     }catch (err){
       console.error(err);
     };
-    console.log(props.point)
+    // console.log(props.point)
     };
 
     const onDelete = async()=> {

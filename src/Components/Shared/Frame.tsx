@@ -88,7 +88,7 @@ export const Frame =({children} :FrameProps) => {
           </Flex>
             
             </Navbar.Section>
-            <Divider my="sm" />
+            <Divider my="sm" color='#8ED1F4' />
           <Box >{items}</Box>
         </Navbar>
       }

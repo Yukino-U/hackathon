@@ -19,10 +19,11 @@ type Contribution= {
   }
 
 export const ToCont = () => {
-  const [isLoading ,setLoading]= useState<boolean>(true); 
+  const [isLoading ,setLoading]= useState<boolean>(false); 
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
+      setLoading(true);
               const response = await fetch(url,
                 {
                   method: "GET",
@@ -66,7 +67,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         <Text>{item.from_name}</Text>
       </div>
       <div>
-        <IconContext.Provider value={{ color: '#ccc', size: '30px' }}>
+        <IconContext.Provider value={{ color: '#8ED1F4', size: '30px' }}>
           <MdOutlineDoubleArrow/>
         </IconContext.Provider>
         <Text >{item.point} Pt</Text>
@@ -111,7 +112,7 @@ const items = cont.map((item : Contribution) => (
                 width="100px"
                 className="mx-auto"
               />
-              <p className="text-center mt-3">loading</p>
+              <p className="text-center mt-3">Loading...</p>
             </div>
           </section>
           </Flex>
