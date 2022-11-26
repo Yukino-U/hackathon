@@ -172,13 +172,13 @@ if (isLoading) {
       data={addData}
       searchable
       searchValue={searchValue}
-      onSearchChange={()=>onSearchChange}
+      onSearchChange={onSearchChange}
       nothingFound="Nothing found"
       filter={(value : string, item: SelectItem) =>
         (item.id!=useId)&&(item.name.toLowerCase().includes(value.toLowerCase().trim()))
       }
       value={value}
-      onChange={()=>Value}
+      onChange={Value}
     />
     <label>Point: </label>
       <input
