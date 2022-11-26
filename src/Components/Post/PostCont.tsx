@@ -98,7 +98,7 @@ const PostCont = () => {
   const [data, setData] = useState<Member[]>([])
   const [addData, setAddData] = useState<AddMember[]>([])
   const get = async () => {
-    setLoading(true);
+    // setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
         // "http://localhost:8080/user",
       {
@@ -119,7 +119,7 @@ const PostCont = () => {
     setLoading(false);
   }
 
-  useEffect(() => {get()},[]);
+  useEffect(() => {setLoading(true); get()},[]);
 const [searchValue, onSearchChange] = useState('');
 interface ItemProps extends React.ComponentPropsWithoutRef<'div'> {
   id: string;
@@ -154,7 +154,7 @@ if (isLoading) {
           width="100px"
           className="mx-auto"
         />
-        <p className="text-center mt-3">Loading...</p>
+        
       </div>
     </section>
     </Flex>

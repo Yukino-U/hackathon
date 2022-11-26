@@ -15,7 +15,7 @@ export const MemberTable =()=>{
   const [data, setData] = useState<MemberRank[]>([]);
   const [isLoading ,setLoading]= useState<boolean>(false);
 const get = async () => {
-  setLoading(true);
+  // setLoading(true);
     const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/ranking",
       // "http://localhost:8080/ranking",
     {
@@ -30,7 +30,7 @@ const get = async () => {
   // console.log(nowData);
   setLoading(false);
 };
-useEffect(() => {get()},[]);
+useEffect(() => {setLoading(true); get()},[]);
 
   const rows = data.map((user : MemberRank) => (
     <tr key={user.id}>
@@ -56,14 +56,14 @@ useEffect(() => {get()},[]);
             width="100px"
             className="mx-auto"
           />
-          <p className="text-center mt-3">Loading...</p>
+          
         </div>
       </section>
       </Flex>
     );
   } else {
   return (
-    <Table fontSize="md">
+    <Table fontSize="sm">
       <thead>
         <tr>
         <th>Rank</th>

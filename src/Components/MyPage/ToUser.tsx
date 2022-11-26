@@ -23,7 +23,7 @@ export const ToCont = () => {
     const [cont, setCont] = useState<Contribution[]>([])
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/tocont?id="+useContext(UserContext).id;
     const getconst = async () => {
-      setLoading(true);
+      // setLoading(true);
               const response = await fetch(url,
                 {
                   method: "GET",
@@ -36,7 +36,7 @@ export const ToCont = () => {
             setCont(nowCont);
             setLoading(false);
             }
-            useEffect(() => {getconst()},[]);
+            useEffect(() =>  {setLoading(true); getconst()},[]);
                     
   
                     interface AccordionLabelProps {
@@ -112,7 +112,7 @@ const items = cont.map((item : Contribution) => (
                 width="100px"
                 className="mx-auto"
               />
-              <p className="text-center mt-3">Loading...</p>
+              
             </div>
           </section>
           </Flex>

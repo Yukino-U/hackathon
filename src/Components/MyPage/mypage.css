@@ -2,4 +2,9 @@ button{
     color : white;
     background-color: #8ED1F4;
     border-color: #8ED1F4;
+    margin: 3px;
+    border-radius: 3px;
+}
+form{
+    font-size: medium;
 }

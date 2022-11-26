@@ -21,7 +21,7 @@ export const UserList=() => {
   const [data, setData] = useState<Member[]>([])
   const [opened, setOpened] = useState(false);
   const get = async () => {
-    setLoading(true);
+    // setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
         // "http://localhost:8080/user",
       {
@@ -35,7 +35,7 @@ export const UserList=() => {
     setData(nowData);
     setLoading(false);
   };
-  useEffect(() => {get()},[]);
+  useEffect(() => {setLoading(true); get()},[]);
   const {set} =useContext(ActiveContext);
   const {setUser} =useContext(UserContext);
   const onSubmit = ( member : Member)  => {
@@ -66,7 +66,7 @@ return (
           width="50px"
           className="mx-auto"
         />
-        <p className="text-center mt-3">Loading...</p>
+        
       </div>
     </section>
     </Flex>}

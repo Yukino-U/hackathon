@@ -28,7 +28,7 @@ export const FromCont = () => {
     const url = "https://hackathon-ncnl2mzkfa-uc.a.run.app/fromcont?id="+useContext(UserContext).id;
     // "http://localhost:8080/fromcont?id="+useContext(UserContext).id;
     const getconst = async () => {
-      setLoading(true);
+      // setLoading(true);
               const response = await fetch(url,
                 {
                   method: "GET",
@@ -41,7 +41,7 @@ export const FromCont = () => {
               setCont(nowCont);
               setLoading(false)
             };
-              useEffect(() => {getconst()},[]);
+              useEffect(() => {setLoading(true); getconst()},[]);
   
                     interface AccordionLabelProps {
                       id : string;
@@ -108,12 +108,12 @@ export const FromCont = () => {
               width="100px"
               className="mx-auto"
             />
-            <p className="text-center mt-3">Loading...</p>
+            
           </div>
         </section>
         </Flex>
       );
-    } else {return <Accordion  chevron={<IconPencil size={20} color='#EB94E2' offset={1}  />} styles={{
+    } else {return <Accordion  chevron={<IconPencil size={20} color='#8ED1F4' offset={1}  />} styles={{
           chevron: {
              '&[data-rotate]': {transform: 'rotate(360deg)',},
             } } }

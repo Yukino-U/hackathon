@@ -20,7 +20,7 @@ type Contribution= {
     const [cont, setCont] = useState([]);
     const [isLoading ,setLoading]= useState<boolean>(false);
     const getconst = async () => {
-      setLoading(true);
+      // setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/home",
         // "http://localhost:8080/home",
          {
@@ -33,7 +33,7 @@ type Contribution= {
       setLoading(false);
       // console.log("false")  
         };
-        useEffect(() => {getconst()},[]);
+        useEffect(() => {setLoading(true); getconst()},[]);
   
 interface AccordionLabelProps {
     id : string;
@@ -108,7 +108,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
               width="100px"
               className="mx-auto"
             />
-            <p className="text-center mt-3">Loading...</p>
+            
           </div>
         </section>
         </Flex>
@@ -119,7 +119,7 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
       <Text 
       variant="gradient"
       gradient={{ from: '#8ED1F4', to: '#EB94E2',deg: 35}}
-      fz="xl" fw={70} >貢献一覧</Text>
+      fz="xl" fw={3000} >All Contribution</Text>
       </Flex>
       <Divider my="sm" color='#8ED1F4' />
       {items}
