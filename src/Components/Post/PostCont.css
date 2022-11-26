@@ -1,6 +1,25 @@
 form {
     width: 100%;
+    font-size: large;
+    color: rgba(73, 103, 251, 0.888);
+    font-weight: 400;
   }
+select{
+  font-size: large;
+}
+input{
+  border-color: gainsboro;
+  border-style:solid;
+  border-width: 1px;
+  border-radius: 3px;
+}
+textarea{
+  border-color: gainsboro;
+  border-style:solid;
+  border-radius: 3px;
+}
+
+  
   
   @media screen and (min-width: 960px) {
     form {
@@ -11,6 +30,10 @@ form {
 
 .message{
     height: 100px;
+}
+button{
+  font-size: large;
+  border-style:solid;
 }
 
 

@@ -114,10 +114,15 @@ const AccordionLabel = (item: AccordionLabelProps) =>{
         </Flex>
       );
     } else {
-      return <div>
-      <Text>All Contribution</Text>
+      return <>
+      <Flex >
+      <Text 
+      variant="gradient"
+      gradient={{ from: '#8ED1F4', to: '#EB94E2',deg: 35}}
+      fz="xl" fw={70} >貢献一覧</Text>
+      </Flex>
       <Divider my="sm" color='#8ED1F4' />
       {items}
-    </div>;
+    </>;
   }
 }

@@ -63,7 +63,7 @@ useEffect(() => {get()},[]);
     );
   } else {
   return (
-    <Table>
+    <Table fontSize="md">
       <thead>
         <tr>
         <th>Rank</th>

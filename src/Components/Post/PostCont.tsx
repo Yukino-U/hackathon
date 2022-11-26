@@ -26,7 +26,7 @@ const PostCont = () => {
   const [value, Value ]  =useState<string | null>(null);
   const [isLoading ,setLoading]= useState<boolean>(false); 
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>)=> {
-    setLoading(true);
+    // setLoading(true);
     //console.log(value)
     e.preventDefault();
     const time = new Date().toLocaleString();
@@ -56,11 +56,11 @@ const PostCont = () => {
         return;
     };
     if (message.length >5000){
-      alert("Please enter a message shorter than 5000 characters");
+      alert("5000字以内で入力してください。");
       return;
     };
     if (time ==""){
-        alert("Time is null");
+        alert("もう一度送信してください");
         return;
       };
     try{
@@ -98,6 +98,7 @@ const PostCont = () => {
   const [data, setData] = useState<Member[]>([])
   const [addData, setAddData] = useState<AddMember[]>([])
   const get = async () => {
+    setLoading(true);
       const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
         // "http://localhost:8080/user",
       {
@@ -163,8 +164,9 @@ if (isLoading) {
   return (
     <div>
     <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+      <label>To:</label>
     <Select
-      label="To:"
+      // label="To:"
       placeholder="送りたい相手を選択してください"
       itemComponent={SelectItem}
       data={addData}
