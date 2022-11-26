@@ -32,7 +32,7 @@ const PostCont = () => {
     const time = new Date().toLocaleString();
     // console.log(time)
     if (!useId){
-      alert("Who are you?");
+      alert("ログインするアカウントを選択してください");
       return;
     };
     if (!value){
