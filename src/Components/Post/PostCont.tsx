@@ -36,7 +36,7 @@ const PostCont = () => {
       return;
     };
     if (!value){
-      alert("Please select user");
+      alert("送信先を選択してください。");
       return;
     };
     if(value==useId){
@@ -44,15 +44,15 @@ const PostCont = () => {
       return
     };
     if (point<=0){
-        alert ("0より大きい整数値を入力してください。");
+        alert ("Point: 0より大きい整数値を入力してください。");
         return;
       };
     if (point%1!=0){
-        alert("0より大きい整数値を入力してください。");
+        alert("Point: 0より大きい整数値を入力してください。");
         return;
     };
     if (message ==""){
-        alert("Please write message")
+        alert("メッセージを入力してください。")
         return;
     };
     if (message.length >5000){
@@ -60,7 +60,7 @@ const PostCont = () => {
       return;
     };
     if (time ==""){
-        alert("もう一度送信してください");
+        alert("もう一度送信してください。");
         return;
       };
     try{

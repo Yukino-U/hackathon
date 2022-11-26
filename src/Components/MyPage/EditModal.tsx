@@ -31,23 +31,23 @@ export const EditModal: FC<EditModalProps> =(props) =>{
       e.preventDefault();
       const time = new Date().toLocaleString();
       if (point<=0){
-          alert ("0より大きい整数値を入力してください。");
+          alert ("Point: 0より大きい整数値を入力してください。");
           return;
         }
       if (point%1!=0){
-          alert("0より大きい整数値を入力してください。");
+          alert("Point: 0より大きい整数値を入力してください。");
           return;
       }
       if (message ==""){
-          alert("Please write message")
+          alert("メッセージを入力してください。")
           return;
       }
       if (message.length >5000){
-        alert("Please enter a message shorter than 5000 characters");
+        alert("5000字以内で入力してください。");
         return;
       }
       if (time ==""){
-          alert("Time is null");
+          alert("もう一度送信してください。");
           return;
         }
       try{
