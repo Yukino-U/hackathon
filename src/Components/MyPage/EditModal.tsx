@@ -124,7 +124,7 @@ export const EditModal: FC<EditModalProps> =(props) =>{
  
     <button>Edit</button>
  </form>
- <button onClick={()=>onDelete}>Delete</button>
+ <button onClick={onDelete}>Delete</button>
     </>)
   ;
 }
