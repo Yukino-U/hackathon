@@ -1,6 +1,6 @@
 {
-  "short_name": "UTTC貢献度可視化システム",
-  "name": "UTTC貢献度可視化システム",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
