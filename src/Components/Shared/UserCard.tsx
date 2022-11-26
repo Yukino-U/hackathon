@@ -1,4 +1,4 @@
-import { UnstyledButton, Group, Avatar, Text } from '@mantine/core';
+import { UnstyledButton, Group, Avatar, Text, Divider } from '@mantine/core';
 
 type Member={
     name : string;

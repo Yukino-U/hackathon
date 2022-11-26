@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext, memo, FC} from 'react';
-import { Drawer, Button, Group, Box } from '@mantine/core';
+import { Drawer, Button, Group, Box, Flex } from '@mantine/core';
 import { UserContext } from './Context';
 import { UserCard } from './UserCard';
 import {RegisterUser} from "./RegisterUser";
 import { useHistory } from 'react-router-dom';
 import { ActiveContext } from './ActiveProvider';
+import ReactLoading from "react-loading";
 
 type Member={
   name : string;
@@ -14,6 +15,8 @@ type Member={
 };
 
 export const UserList=() => {
+  console.log("UserLIst")
+  const [isLoading ,setLoading]= useState<boolean>(true); 
   const history = useHistory();
   const [data, setData] = useState<Member[]>([])
   const [opened, setOpened] = useState(false);
@@ -29,15 +32,18 @@ export const UserList=() => {
     );
     const nowData : Member[] = await response.json();
     setData(nowData);
+    setLoading(false);
   };
   useEffect(() => {get()},[]);
   const {set} =useContext(ActiveContext);
   const {setUser} =useContext(UserContext);
-  const onSubmit = ( id:string, photo: string, name: string, point : number)  => {
-    setUser(id, photo, name, point);
+  const onSubmit = ( member : Member)  => {
+    setUser(member.id, member.photo, member.name, member.point);
     set(-1) ;
     history.push("/");
    }
+
+
 return (
 <>
       <Drawer
@@ -48,10 +54,27 @@ return (
         size="sm"
         position="right" 
       >
-        <RegisterUser reload={get()} ></RegisterUser>
+        <RegisterUser reload={get} ></RegisterUser>
         <p></p>
+        {isLoading &&    <Flex justify="center" align="center"> 
+    <section className="flex justify-center items-center h-screen">
+      <div>
+        <p></p>
+        <ReactLoading
+          type="spin"
+          color='#8ED1F4'
+          height="100px"
+          width="100px"
+          className="mx-auto"
+        />
+        <p className="text-center mt-3">loading</p>
+      </div>
+    </section>
+    </Flex>}
+        
+        <>
         {data.map((user :Member) => (
-              <Box onClick={()=>onSubmit(user.id, user.photo, user.name, user.point)} key={user.id}
+              <Box onClick={()=>onSubmit(user)} key={user.id} className="usercard"
               sx={(theme) => ({
                 // backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
                 textAlign: 'left',
@@ -65,10 +88,15 @@ return (
                 },
               })}
             >
+    
+              
               <UserCard  user={user}  />
             </Box>
+            
             ))}
+            </>
           <Box>
+        
             
           </Box>
         

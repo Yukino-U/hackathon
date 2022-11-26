@@ -1,5 +1,6 @@
 import {UserContext} from "../Shared/Context";
 import { useState , useContext} from 'react';
+import "./mypage.css"
 
 export const EditProfile=()=>{
   // console.log("Edit");
@@ -45,7 +46,8 @@ export const EditProfile=()=>{
   
     return (
       <>     
-      <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+      <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+        <p></p>
       <label>Name: </label>
      <input
        type={"string"}
@@ -58,6 +60,7 @@ export const EditProfile=()=>{
        value={photo}
        onChange={(e) => setPhoto(e.target.value)}
      ></input>
+    
       <button>Edit</button>
    </form>
       </>)

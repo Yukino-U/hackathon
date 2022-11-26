@@ -21,9 +21,12 @@ import { IconAward , IconSend, IconChevronRight, IconStar} from '@tabler/icons';
 import { ActiveContext } from './ActiveProvider';
 import pic from "./Logo.jpg";
 
-export const Frame =(props :ReactNode) => {
-  const {set} =useContext(ActiveContext);
-  const active =useContext(ActiveContext).active
+interface FrameProps {
+  children: ReactNode;
+}
+
+export const Frame =({children} :FrameProps) => {
+  const {set, active} =useContext(ActiveContext);
   const history = useHistory();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -61,7 +64,7 @@ export const Frame =(props :ReactNode) => {
       label={item.label}
       rightSection={item.rightSection}
       icon={<item.icon size={16} stroke={1.5} />}
-      onClick={()=>item.rink()}
+      onClick={item.rink}
       color='#8ED1F4'
     />
     
@@ -104,14 +107,14 @@ export const Frame =(props :ReactNode) => {
             </MediaQuery>
 
           </div>
-          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={()=>rinkTop()}><Image src={pic} ></Image></div>
+          <div style={{ width: 200, marginLeft: 'auto', marginRight: 'auto' }} onClick={rinkTop}><Image src={pic} ></Image></div>
           
           </Flex>
-          <div>{UserList()}</div>
-        </Header>
+          <UserList/>
+          </Header>
       }
     >
-      <div className='props'>{props}</div>
+      <div className='props'>{children}</div>
     </AppShell>
   );
 }

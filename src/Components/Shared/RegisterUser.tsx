@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Button, Group } from '@mantine/core';
 
 type Props={
-    reload :Promise<void>
+    reload :() => Promise<void>
 }
 export const RegisterUser = (props:  Props) => {
     const [opened, setOpened] = useState(false);
@@ -38,7 +38,7 @@ export const RegisterUser = (props:  Props) => {
           throw Error('Failed to edit profile : ${result.status}');
         }
         setOpened(false);
-        await props.reload;
+        props.reload();
       }catch (err){
         console.error(err);
       };
@@ -54,7 +54,7 @@ export const RegisterUser = (props:  Props) => {
         fullScreen
       >
         
-        <form onSubmit={()=>onSubmit} style={{ display: "flex", flexDirection: "column" }}>
+        <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
       <label>Name: </label>
      <input
        type={"string"}
@@ -69,7 +69,7 @@ export const RegisterUser = (props:  Props) => {
      ></input>
      
    
-      <button>Edit</button>
+      <button>登録</button>
    </form>
 
       </Modal>

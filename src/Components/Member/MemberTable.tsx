@@ -48,9 +48,10 @@ useEffect(() => {get()},[]);
       <Flex justify="center" align="center"> 
       <section className="flex justify-center items-center h-screen">
         <div>
+          <p></p>
           <ReactLoading
             type="spin"
-            color="#ebc634"
+            color='#8ED1F4'
             height="100px"
             width="100px"
             className="mx-auto"

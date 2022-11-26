@@ -10,7 +10,7 @@ type Props = {
 	children: ReactNode;
 };
 export const UserContext = createContext(initialState)
-export const UserProvider : FC<Props> = (props) => {
+export const UserProvider = ({children} :Props) => {
     console.log("User")
     const [id, setId] =useState("");
     const [photo, setPhoto] =useState("");
@@ -22,7 +22,7 @@ export const UserProvider : FC<Props> = (props) => {
         setName(name);
         setPoint(point);
     };
-    const { children } = props;
+    // const { children } = props;
     return (
         <UserContext.Provider   value={{
             id,

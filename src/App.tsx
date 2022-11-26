@@ -3,7 +3,7 @@ import {Router} from "./Router"
 import { UserProvider } from "./Components/Shared/Context";
 import { ActiveProvider } from "./Components/Shared/ActiveProvider";
 // import Loading from "./Components/Shared/Loading"
-document.querySelectorAll('*').forEach(el => el.clientWidth > document.body.clientWidth ? console.log(el) : null);
+// document.querySelectorAll('*').forEach(el => el.clientWidth > document.body.clientWidth ? console.log(el) : null);
 const App = ()=> {
   console.log("App")
 return (
@@ -13,12 +13,12 @@ return (
     <header className="App-header">
       <> 
 
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
       <div className="App">
 
       <Router />
       </div>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
       </>
      
     </header>

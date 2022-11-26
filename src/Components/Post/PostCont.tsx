@@ -8,6 +8,7 @@ type Member={
   name : string;
   id : string;
   photo : string;
+  point : number;
 }
 type AddMember={
   name : string;
@@ -143,9 +144,10 @@ if (isLoading) {
     <Flex justify="center" align="center"> 
     <section className="flex justify-center items-center h-screen">
       <div>
+        <p></p>
         <ReactLoading
           type="spin"
-          color="#ebc634"
+          color='#8ED1F4'
           height="100px"
           width="100px"
           className="mx-auto"
@@ -162,7 +164,7 @@ if (isLoading) {
     <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column" }}>
     <Select
       label="To:"
-      placeholder="Pick all that you like"
+      placeholder="送りたい相手を選択してください"
       itemComponent={SelectItem}
       data={addData}
       searchable

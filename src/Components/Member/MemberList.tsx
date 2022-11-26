@@ -3,14 +3,14 @@ import { Box } from '@mantine/core';
 import {MemberCard} from "./MemberCard"
 import "../../Form";
 type Member={
-    name : string;
     id : string;
+    name : string;
     photo : string;
     point : number;
   }
 
 export const MemberList = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState<Member[]>([])
     const get = async () => {
         const response = await fetch("https://hackathon-ncnl2mzkfa-uc.a.run.app/user",
           // "http://localhost:8080/user",
